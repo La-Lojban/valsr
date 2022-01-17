@@ -3,8 +3,3 @@ dist
 vendor
 word-list.txt
 .DS_Store
-
-common-words.txt
-full-words.txt
-daily-words.txt
-profanities.txt
