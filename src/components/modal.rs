@@ -4,7 +4,7 @@ use crate::state::{GameMode, WordList, Theme};
 use crate::Msg;
 
 const FORMS_LINK_TEMPLATE_ADD: &str = "https://docs.google.com/forms/d/e/1FAIpQLSfH8gs4sq-Ynn8iGOvlc99J_zOG2rJEC4m8V0kCgF_en3RHFQ/viewform?usp=pp_url&entry.461337706=Lis%C3%A4yst%C3%A4&entry.560255602=";
-const CHANGELOG_URL: &str = "https://github.com/Cadiac/sanuli/blob/master/CHANGELOG.md";
+const CHANGELOG_URL: &str = "https://github.com/La-Lojban/sanuli/blob/master/CHANGELOG.md";
 const VERSION: &str = "v1.7";
 
 macro_rules! onmousedown {
@@ -32,34 +32,27 @@ pub fn help_modal(props: &HelpModalProps) -> Html {
     html! {
         <div class="modal">
             <span onmousedown={toggle_help} class="modal-close">{"✖"}</span>
-            <p>{"Arvaa kätketty "}<i>{"sanuli"}</i>{" kuudella yrityksellä."}</p>
-            <p>{"Jokaisen yrityksen jälkeen arvatut kirjaimet vaihtavat väriään."}</p>
+            <p>{"Guess the hidden "}<i>{"word"}</i>{" with six tries."}</p>
+            <p>{"After each guess the letters change color."}</p>
     
             <div class="row-5 example">
-                <div class={classes!("tile", "correct")}>{"K"}</div>
-                <div class={classes!("tile", "absent")}>{"O"}</div>
-                <div class={classes!("tile", "present")}>{"I"}</div>
-                <div class={classes!("tile", "absent")}>{"R"}</div>
+                <div class={classes!("tile", "correct")}>{"B"}</div>
                 <div class={classes!("tile", "absent")}>{"A"}</div>
+                <div class={classes!("tile", "present")}>{"N"}</div>
+                <div class={classes!("tile", "absent")}>{"G"}</div>
+                <div class={classes!("tile", "absent")}>{"U"}</div>
             </div>
     
-            <p><span class="present">{"Keltainen"}</span>{": kirjain löytyy kätketystä sanasta, mutta on arvauksessa väärällä paikalla."}</p>
-            <p><span class="correct">{"Vihreä"}</span>{": kirjain on arvauksessa oikealla paikalla."}</p>
-            <p><span class="absent">{"Harmaa"}</span>{": kirjain ei löydy sanasta."}</p>
+            <p><span class="present">{"Yellow"}</span>{": The letter is in the word, but in the wrong spot."}</p>
+            <p><span class="correct">{"Green"}</span>{": The letter is in the word and in the correct spot."}</p>
+            <p><span class="absent">{"Gray"}</span>{": The letter is not in the word."}</p>
     
             <p>
-                {"Arvattaviin sanoihin käytetyn sanalistan voi valita asetuksista. Molempien sanalistojen pohjana on Kotimaisten kielten keskuksen (Kotus) julkaisema "}
-                <a class="link" href="https://creativecommons.org/licenses/by/3.0/deed.fi" target="_blank">{"\"CC Nimeä 3.0 Muokkaamaton\""}</a>
-                {" lisensoitu nykysuomen sanalista, josta on poimittu ne sanat, jotka sisältävät vain kirjaimia A-Ö. Suppealla listalla on näistä
-                karsittu harvinaisemmat laina- ja murressanat, sekä muut erikoisuudet. Sanat ovat enimmäkseen perusmuodossa."}
+                {"The word list to be used can be changed from the settings."}
+                {"The common list includes the most common gismu. The full list includes all the gismu and all the lujvo that has 6 characters."}
             </p>
             <p>
-                {"Päivän sanulin sanat tulevat omalta listaltaan, joka on jotain laajan ja suppean väliltä. Sanulin pitäisi olla sama kaikille pelaajille tiettynä päivänä."}
-            </p>
-            <p>
-                {"Sanalistoja muokataan jatkuvasti käyttäjien ehdotusten perusteella, ja voit jättää omat ehdotuksesi sanuleihin "}
-                <a class="link" href={FORMS_LINK_TEMPLATE_ADD}>{"täällä"}</a>
-                {"."}
+                {"The daily word includes all the gismu. The daily word is same for everyone."}
             </p>
         </div>
     }
@@ -100,79 +93,79 @@ pub fn menu_modal(props: &MenuModalProps) -> Html {
         <div class="modal">
             <span onmousedown={toggle_menu} class="modal-close">{"✖"}</span>
             <div>
-                <label class="label">{"Sanulien pituus:"}</label>
+                <label class="label">{"Word length:"}</label>
                 <div class="select-container">
                     <button class={classes!("select", (props.word_length == 5).then(|| Some("select-active")))}
                         onmousedown={change_word_length_5}>
-                        {"5 merkkiä"}
+                        {"5 characters"}
                     </button>
                     <button class={classes!("select", (props.word_length == 6).then(|| Some("select-active")))}
                         onmousedown={change_word_length_6}>
-                        {"6 merkkiä"}
+                        {"6 characters"}
                     </button>
                 </div>
             </div>
             <div>
-                <label class="label">{"Sanulista:"}</label>
+                <label class="label">{"The word list:"}</label>
                 <div class="select-container">
                     <button class={classes!("select", (props.current_word_list == WordList::Common).then(|| Some("select-active")))}
                         onmousedown={change_word_list_common}>
-                        {"Suppea"}
+                        {"Common"}
                     </button>
                     <button class={classes!("select", (props.current_word_list == WordList::Full).then(|| Some("select-active")))}
                         onmousedown={change_word_list_full}>
-                        {"Laaja"}
+                        {"Full"}
                     </button>
                 </div>
             </div>
             <div>
-                <label class="label">{"Rumat sanulit:"}</label>
+                <label class="label">{"Experimental gismu:"}</label>
                 <div class="select-container">
                     <button class={classes!("select", (!props.allow_profanities).then(|| Some("select-active")))}
                         onmousedown={change_allow_profanities_no}>
-                        {"Ei"}
+                        {"No"}
                     </button>
                     <button class={classes!("select", (props.allow_profanities).then(|| Some("select-active")))}
                         onmousedown={change_allow_profanities_yes}>
-                        {"Kyllä"}
+                        {"Yes"}
                     </button>
                 </div>
             </div>
             <div>
-                <label class="label">{"Pelimuoto:"}</label>
+                <label class="label">{"Game mode:"}</label>
                 <div class="select-container">
                     <button class={classes!("select", (props.game_mode == GameMode::Classic).then(|| Some("select-active")))}
                         onmousedown={change_game_mode_classic}>
-                        {"Peruspeli"}
+                        {"Basic game"}
                     </button>
                     <button class={classes!("select", (props.game_mode == GameMode::Relay).then(|| Some("select-active")))}
                         onmousedown={change_game_mode_relay}>
-                        {"Sanuliketju"}
+                        {"Word chain"}
                     </button>
                     <button class={classes!("select", (props.game_mode == GameMode::DailyWord).then(|| Some("select-active")))}
                         onclick={change_game_mode_daily}>
-                        {"Päivän sanuli"}
+                        {"Daily word"}
                     </button>
                 </div>
             </div>
             <div>
-                <label class="label">{"Omat tilastosi:"}</label>
+                <label class="label">{"My stats:"}</label>
                 <ul>
-                    <li class="statistics">{format!("Pisin putki: {}", props.max_streak)}</li>
-                    <li class="statistics">{format!("Pelatut sanulit: {}", props.total_played)}</li>
-                    <li class="statistics">{format!("Ratkaistut sanulit: {}", props.total_solved)}</li>
+                    <li class="statistics">{format!("Longest streak: {}", props.max_streak)}</li>
+                    <li class="statistics">{format!("Played words: {}", props.total_played)}</li>
+                    <li class="statistics">{format!("Solved words: {}", props.total_solved)}</li>
                 </ul>
             </div>
             <div>
-                <label class="label">{"Teema:"}</label>
+                <label class="label">{"Theme:"}</label>
                 <div class="select-container">
                     <button class={classes!("select", (props.theme == Theme::Dark).then(|| Some("select-active")))}
                         onmousedown={change_theme_dark}>
-                        {"Oletus"}
+                        {"Default"}
                     </button>
                     <button class={classes!("select", (props.theme == Theme::Colorblind).then(|| Some("select-active")))}
                         onmousedown={change_theme_colorblind}>
-                        {"Värisokeille"}
+                        {"Color blind"}
                     </button>
                 </div>
             </div>
