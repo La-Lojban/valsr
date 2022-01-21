@@ -6,9 +6,10 @@ use crate::Msg;
 
 use crate::components::{message::Message};
 
-const KEYBOARD_0: [char; 10] = ['Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P'];
-const KEYBOARD_1: [char; 11] = ['A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L', 'Ö', 'Ä'];
+const KEYBOARD_0: [char; 10] = ['.', ',', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P'];
+const KEYBOARD_1: [char; 9] = ['A', 'S', 'D', 'F', 'G', '\'', 'J', 'K', 'L'];
 const KEYBOARD_2: [char; 7] = ['Z', 'X', 'C', 'V', 'B', 'N', 'M'];
+
 
 #[derive(Properties, PartialEq)]
 pub struct Props {
@@ -114,7 +115,7 @@ pub fn keyboard(props: &Props) -> Html {
                         html! {
                             <button data-nosnippet="" class={classes!("keyboard-button", "keyboard-button-submit")}
                                 onmousedown={onmousedown}>
-                                { "ARVAA" }
+                                { "GUESS" }
                             </button>
                         }
                     } else if props.game_mode == GameMode::DailyWord {
@@ -127,7 +128,7 @@ pub fn keyboard(props: &Props) -> Html {
                         html! {
                             <button data-nosnippet="" class={classes!("keyboard-button", "keyboard-button-submit", "correct")}
                                 onmousedown={onmousedown}>
-                                { "TAKAISIN" }
+                                { "BACK" }
                             </button>
                         }
                     } else {
@@ -140,7 +141,7 @@ pub fn keyboard(props: &Props) -> Html {
                         html! {
                             <button data-nosnippet="" class={classes!("keyboard-button", "keyboard-button-submit", "correct")}
                                 onmousedown={onmousedown}>
-                                { "UUSI?" }
+                                { "NEW?" }
                             </button>
                         }
                     }

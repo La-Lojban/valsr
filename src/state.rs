@@ -512,17 +512,17 @@ impl State {
         if self.is_winner {
             if self.game_mode == GameMode::DailyWord {
                 self.message = format!(
-                    "Löysit päivän sanulin! {}",
+                    "You found the daily word! {}",
                     SUCCESS_EMOJIS.choose(&mut rand::thread_rng()).unwrap()
                 );
             } else {
                 self.message = format!(
-                    "Löysit sanan! {}",
+                    "You found the word! {}",
                     SUCCESS_EMOJIS.choose(&mut rand::thread_rng()).unwrap()
                 );
             }
         } else {
-            self.message = format!("Sana oli \"{}\"", self.word.iter().collect::<String>());
+            self.message = format!("The word was \"{}\"", self.word.iter().collect::<String>());
         }
     }
 
@@ -563,12 +563,12 @@ impl State {
 
     pub fn submit_guess(&mut self) -> bool {
         if !self.is_guess_allowed() {
-            self.message = "Liian vähän kirjaimia!".to_owned();
+            self.message = "Too few letters!".to_owned();
             return true;
         }
         if !self.is_guess_real_word() {
             self.is_unknown = true;
-            self.message = "Ei sanulistalla.".to_owned();
+            self.message = "Not in the word list.".to_owned();
             return true;
         }
 
@@ -721,7 +721,7 @@ impl State {
             }
 
             if !self.is_guessing {
-                self.message = "Uusi sanuli huomenna!".to_owned();
+                self.message = "New daily word tomorrow!".to_owned();
             }
         } else {
             let _result = self.persist_game();
@@ -882,7 +882,7 @@ impl State {
             self.current_guess = solve.current_guess;
 
             if !self.is_guessing {
-                self.message = "Uusi sanuli huomenna!".to_owned();
+                self.message = "New daily word tomorrow!".to_owned();
             } else {
                 self.message = EMPTY.to_string()
             }
