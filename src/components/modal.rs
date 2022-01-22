@@ -3,7 +3,7 @@ use yew::prelude::*;
 use crate::state::{GameMode, WordList, Theme};
 use crate::Msg;
 
-const CHANGELOG_URL: &str = "https://github.com/La-Lojban/valsr-src/blob/master/CHANGELOG.md";
+const CHANGELOG_URL: &str = "https://github.com/La-Lojban/valsr/blob/master/CHANGELOG.md";
 const VERSION: &str = "v1.8";
 const LIVE_CHAT: &str = "https://discord.gg/4KhzRzpmVr";
 
@@ -48,7 +48,7 @@ pub fn help_modal(props: &HelpModalProps) -> Html {
             <p><span class="absent">{"Gray"}</span>{": The letter is not in the word."}</p>
     
             <p>
-                {"The word list to be used can be changed from the settings."}
+                {"The word list to be used can be changed from the settings. "}
                 {"The common list includes the most common gismu. The full list includes all the gismu and all the lujvo that has 6 characters."}
             </p>
             <p>

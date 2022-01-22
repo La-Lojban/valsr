@@ -80,4 +80,4 @@ $ trunk serve --port=9090
 $ trunk build --release
 ```
 
-and copy the produced `dist` directory to your target server.
+and copy the produced `docs` directory to your target server.
