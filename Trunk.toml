@@ -1,0 +1,15 @@
+[build]
+# The index HTML file to drive the bundling process.
+target = "index.html"
+# Build in release mode.
+release = false
+# The output dir for all final assets.
+dist = "docs"
+# The public URL from which assets are to be served.
+public_url = "/valsr"
+
+[clean]
+# The output dir for all final assets.
+dist = "docs"
+# Optionally perform a cargo clean.
+cargo = false

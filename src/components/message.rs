@@ -1,7 +1,7 @@
 use yew::prelude::*;
 
-const FORMS_LINK_TEMPLATE_ADD: &str = "https://la-lojban.github.io/sutysisku/lojban/";
-const FORMS_LINK_TEMPLATE_DEL: &str = "https://la-lojban.github.io/sutysisku/lojban/";
+const FORMS_LINK_TEMPLATE_ADD: &str = "https://discord.gg/4KhzRzpmVr";
+const FORMS_LINK_TEMPLATE_DEL: &str = "https://discord.gg/4KhzRzpmVr";
 const DICTIONARY_LINK_TEMPLATE: &str = "https://la-lojban.github.io/sutysisku/lojban/index.html#seskari=catni&sisku=";
 
 #[derive(Properties, Clone, PartialEq)]

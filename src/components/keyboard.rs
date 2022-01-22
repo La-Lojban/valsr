@@ -89,7 +89,6 @@ pub fn keyboard(props: &Props) -> Html {
             <div class="keyboard-row">
                 <div class="spacer" />
                 <div class="spacer" />
-                <div class="spacer" />
                 {
                     KEYBOARD_2.iter().map(|key| {
                         let callback = props.callback.clone();
@@ -146,8 +145,6 @@ pub fn keyboard(props: &Props) -> Html {
                         }
                     }
                 }
-                <div class="spacer" />
-                <div class="spacer" />
             </div>
         </div>
     }

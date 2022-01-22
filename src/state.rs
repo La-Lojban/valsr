@@ -225,7 +225,7 @@ impl State {
 
         let word_lists = parse_all_words();
         let current_word_list = WordList::Common;
-        let allow_profanities = true;
+        let allow_profanities = false;
 
         let word = State::get_random_word(
             &word_lists,

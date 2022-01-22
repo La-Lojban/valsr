@@ -5,6 +5,7 @@ use crate::Msg;
 
 const CHANGELOG_URL: &str = "https://github.com/La-Lojban/valsr-src/blob/master/CHANGELOG.md";
 const VERSION: &str = "v1.8";
+const LIVE_CHAT: &str = "https://discord.gg/4KhzRzpmVr";
 
 macro_rules! onmousedown {
     ( $cb:ident, $msg:expr ) => {
@@ -31,7 +32,7 @@ pub fn help_modal(props: &HelpModalProps) -> Html {
     html! {
         <div class="modal">
             <span onmousedown={toggle_help} class="modal-close">{"✖"}</span>
-            <p>{"Guess the hidden "}<i>{"word"}</i>{" with six tries."}</p>
+            <p>{"Guess the hidden "}<i>{"word"}</i>{" in six tries."}</p>
             <p>{"After each guess the letters change color."}</p>
     
             <div class="row-5 example">
@@ -53,6 +54,14 @@ pub fn help_modal(props: &HelpModalProps) -> Html {
             <p>
                 {"The daily word includes all the gismu. The daily word is same for everyone."}
             </p>
+            <p>
+                {"Join the "}
+                <a class="link" href={format!("{}", LIVE_CHAT)}
+                            target="_blank">{ "live Discord chat" }
+                        </a>
+
+            </p>
+            
         </div>
     }
 }
@@ -91,32 +100,32 @@ pub fn menu_modal(props: &MenuModalProps) -> Html {
     html! {
         <div class="modal">
             <span onmousedown={toggle_menu} class="modal-close">{"✖"}</span>
-            <div>
-                <label class="label">{"Word length:"}</label>
-                <div class="select-container">
-                    <button class={classes!("select", (props.word_length == 5).then(|| Some("select-active")))}
-                        onmousedown={change_word_length_5}>
-                        {"5 characters"}
-                    </button>
-                    <button class={classes!("select", (props.word_length == 6).then(|| Some("select-active")))}
-                        onmousedown={change_word_length_6}>
-                        {"6 characters"}
-                    </button>
-                </div>
-            </div>
-            <div>
-                <label class="label">{"The word list:"}</label>
-                <div class="select-container">
-                    <button class={classes!("select", (props.current_word_list == WordList::Common).then(|| Some("select-active")))}
-                        onmousedown={change_word_list_common}>
-                        {"Common"}
-                    </button>
-                    <button class={classes!("select", (props.current_word_list == WordList::Full).then(|| Some("select-active")))}
-                        onmousedown={change_word_list_full}>
-                        {"Full"}
-                    </button>
-                </div>
-            </div>
+            // <div>
+            //     <label class="label">{"Word length:"}</label>
+            //     <div class="select-container">
+            //         <button class={classes!("select", (props.word_length == 5).then(|| Some("select-active")))}
+            //             onmousedown={change_word_length_5}>
+            //             {"5 characters"}
+            //         </button>
+            //         <button class={classes!("select", (props.word_length == 6).then(|| Some("select-active")))}
+            //             onmousedown={change_word_length_6}>
+            //             {"6 characters"}
+            //         </button>
+            //     </div>
+            // </div>
+            // <div>
+            //     <label class="label">{"The word list:"}</label>
+            //     <div class="select-container">
+            //         <button class={classes!("select", (props.current_word_list == WordList::Common).then(|| Some("select-active")))}
+            //             onmousedown={change_word_list_common}>
+            //             {"Common"}
+            //         </button>
+            //         <button class={classes!("select", (props.current_word_list == WordList::Full).then(|| Some("select-active")))}
+            //             onmousedown={change_word_list_full}>
+            //             {"Full"}
+            //         </button>
+            //     </div>
+            // </div>
             <div>
                 <label class="label">{"Experimental gismu:"}</label>
                 <div class="select-container">

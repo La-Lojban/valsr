@@ -1,5 +1,4 @@
 /target
-dist
 vendor
 word-list.txt
 .DS_Store
