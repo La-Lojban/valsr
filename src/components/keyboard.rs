@@ -6,7 +6,7 @@ use crate::Msg;
 
 use crate::components::{message::Message};
 
-const KEYBOARD_0: [char; 10] = ['.', ',', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P'];
+const KEYBOARD_0: [char; 8] = ['E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P'];
 const KEYBOARD_1: [char; 9] = ['A', 'S', 'D', 'F', 'G', '\'', 'J', 'K', 'L'];
 const KEYBOARD_2: [char; 7] = ['Z', 'X', 'C', 'V', 'B', 'N', 'M'];
 

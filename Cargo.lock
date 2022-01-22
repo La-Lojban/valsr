@@ -337,19 +337,6 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "73b4b750c782965c211b42f022f59af1fbceabdd026623714f104152f1ec149f"
 
 [[package]]
-name = "sanuli"
-version = "0.1.0"
-dependencies = [
- "chrono",
- "getrandom",
- "rand",
- "serde_scan",
- "wasm-bindgen",
- "web-sys",
- "yew",
-]
-
-[[package]]
 name = "scoped-tls-hkt"
 version = "0.1.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -448,6 +435,19 @@ name = "unicode-xid"
 version = "0.2.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "8ccb82d61f80a663efe1f787a51b16b5a51e3314d6ac365b08639f52387b33f3"
+
+[[package]]
+name = "valsr"
+version = "0.1.0"
+dependencies = [
+ "chrono",
+ "getrandom",
+ "rand",
+ "serde_scan",
+ "wasm-bindgen",
+ "web-sys",
+ "yew",
+]
 
 [[package]]
 name = "version_check"

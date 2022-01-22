@@ -14,8 +14,8 @@ use components::{
 };
 use state::{GameMode, State, TileState, WordList, Theme};
 
-const ALLOWED_KEYS: [char; 26] = [
-    '.', ',', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P', 'A', 'S', 'D', 'F', 'G', '\'', 'J', 'K',
+const ALLOWED_KEYS: [char; 24] = [
+    'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P', 'A', 'S', 'D', 'F', 'G', '\'', 'J', 'K',
     'L', 'Z', 'X', 'C', 'V', 'B', 'N', 'M',
 ];
 

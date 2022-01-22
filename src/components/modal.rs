@@ -3,9 +3,8 @@ use yew::prelude::*;
 use crate::state::{GameMode, WordList, Theme};
 use crate::Msg;
 
-const FORMS_LINK_TEMPLATE_ADD: &str = "https://docs.google.com/forms/d/e/1FAIpQLSfH8gs4sq-Ynn8iGOvlc99J_zOG2rJEC4m8V0kCgF_en3RHFQ/viewform?usp=pp_url&entry.461337706=Lis%C3%A4yst%C3%A4&entry.560255602=";
-const CHANGELOG_URL: &str = "https://github.com/La-Lojban/sanuli/blob/master/CHANGELOG.md";
-const VERSION: &str = "v1.7";
+const CHANGELOG_URL: &str = "https://github.com/La-Lojban/valsr-src/blob/master/CHANGELOG.md";
+const VERSION: &str = "v1.8";
 
 macro_rules! onmousedown {
     ( $cb:ident, $msg:expr ) => {

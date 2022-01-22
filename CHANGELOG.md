@@ -1,6 +1,16 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## v1.8 - 2022-01-22
+
+### Added
+
+### Changed
+
+- Adapted to [Lojban](https://lojban.org)
+
+### Fixed
+
 ## v1.7 - 2022-01-16
 
 ### Added
