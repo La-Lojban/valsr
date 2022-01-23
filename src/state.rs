@@ -271,7 +271,7 @@ impl State {
             daily_word_history: HashMap::new(),
 
             game_mode: GameMode::DailyWord,
-            previous_game_mode: GameMode::DailyWord,
+            previous_game_mode: GameMode::Relay,
 
             message: EMPTY.to_string(),
 
