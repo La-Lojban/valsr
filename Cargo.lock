@@ -331,6 +331,15 @@ dependencies = [
 ]
 
 [[package]]
+name = "rand_pcg"
+version = "0.3.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "59cad018caf63deb318e5a4586d99a24424a364f40f1e5778c29aca23f4fc73e"
+dependencies = [
+ "rand_core",
+]
+
+[[package]]
 name = "ryu"
 version = "1.0.9"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -443,6 +452,7 @@ dependencies = [
  "chrono",
  "getrandom",
  "rand",
+ "rand_pcg",
  "serde_scan",
  "wasm-bindgen",
  "web-sys",

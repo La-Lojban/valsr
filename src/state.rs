@@ -1,3 +1,4 @@
+use rand::Rng;
 use rand::seq::SliceRandom;
 use std::collections::HashMap;
 use std::collections::HashSet;
@@ -8,6 +9,8 @@ use std::str::FromStr;
 use chrono::{Local, NaiveDate};
 use wasm_bindgen::JsValue;
 use web_sys::{window, Window};
+
+use rand::SeedableRng;
 
 const FULL_WORDS: &str = include_str!("../full-words.txt");
 const COMMON_WORDS: &str = include_str!("../common-words.txt");
@@ -137,7 +140,6 @@ impl fmt::Display for Theme {
     }
 }
 
-
 #[derive(Clone, PartialEq)]
 pub enum CharacterState {
     Correct,
@@ -265,8 +267,8 @@ impl State {
 
             daily_word_history: HashMap::new(),
 
-            game_mode: GameMode::Classic,
-            previous_game_mode: GameMode::Classic,
+            game_mode: GameMode::DailyWord,
+            previous_game_mode: GameMode::DailyWord,
 
             message: EMPTY.to_string(),
 
@@ -522,7 +524,10 @@ impl State {
                 );
             }
         } else {
-            self.message = format!("The word was \"{}\"", self.word.iter().collect::<String>());
+            self.message = format!(
+                "The word was \"{}\"",
+                self.word.iter().collect::<String>(),
+            );
         }
     }
 
@@ -624,13 +629,19 @@ impl State {
 
     pub fn get_daily_word_index(&self) -> usize {
         let epoch = NaiveDate::from_ymd(2022, 1, 07); // Epoch of the daily word mode, index 0
-        Local::now()
+        let index = Local::now()
             .naive_local()
             .date()
             .signed_duration_since(epoch)
-            .num_days() as usize
+            .num_days() as u64;
+
+        let no_of_daily_words: u64 = DAILY_WORDS
+        .lines().count() as u64;
+        let rng = rand::rngs::StdRng::seed_from_u64(index).gen_range(0..no_of_daily_words) as usize;
+        rng
     }
 
+    
     pub fn get_daily_word(&self) -> Vec<char> {
         DAILY_WORDS
             .lines()
@@ -776,7 +787,10 @@ impl State {
             local_storage.set_item("game_mode", &self.game_mode.to_string())?;
             local_storage.set_item("word_length", format!("{}", self.word_length).as_str())?;
             local_storage.set_item("word_list", format!("{}", self.current_word_list).as_str())?;
-            local_storage.set_item("allow_profanities", format!("{}", self.allow_profanities).as_str())?;
+            local_storage.set_item(
+                "allow_profanities",
+                format!("{}", self.allow_profanities).as_str(),
+            )?;
             local_storage.set_item("theme", format!("{}", self.theme).as_str())?;
         }
 
