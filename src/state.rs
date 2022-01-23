@@ -1,5 +1,5 @@
-use rand::Rng;
 use rand::seq::SliceRandom;
+use rand::Rng;
 use std::collections::HashMap;
 use std::collections::HashSet;
 use std::fmt;
@@ -12,6 +12,9 @@ use web_sys::{window, Window};
 
 use rand::SeedableRng;
 
+use regex::Regex;
+
+const DEFINITIONS: &str = include_str!("../definitions.txt");
 const FULL_WORDS: &str = include_str!("../full-words.txt");
 const COMMON_WORDS: &str = include_str!("../common-words.txt");
 const DAILY_WORDS: &str = include_str!("../daily-words.txt");
@@ -510,24 +513,49 @@ impl State {
         self.message = EMPTY.to_string();
     }
 
+    fn get_word_definition(&mut self, word: &str) -> String {
+        let mut word_with_suffix = word.clone().to_owned().to_lowercase();
+        word_with_suffix.push_str(&"\t");
+
+        let line = DEFINITIONS
+            .lines()
+            .filter(|x| {
+                if x.starts_with(&word_with_suffix) {
+                    true
+                } else {
+                    false
+                }
+            })
+            .nth(0)
+            .unwrap_or("");
+        let re = Regex::new(r"[$_{}]").unwrap();
+        let re2 = Regex::new(r"^.*\t").unwrap();
+        let mut result = re.replace_all(line, "").to_string();
+        result = re2.replace_all(&result, "").to_string();
+        result
+    }
+
     fn set_game_end_message(&mut self) {
+        let stringified_word = &self.word.iter().collect::<String>();
+        let def = self.get_word_definition(stringified_word);
         if self.is_winner {
             if self.game_mode == GameMode::DailyWord {
                 self.message = format!(
-                    "You found the daily word! {}",
-                    SUCCESS_EMOJIS.choose(&mut rand::thread_rng()).unwrap()
+                    "You found the daily word {}! {} - {}",
+                    SUCCESS_EMOJIS.choose(&mut rand::thread_rng()).unwrap(),
+                    stringified_word,
+                    def,
                 );
             } else {
                 self.message = format!(
-                    "You found the word! {}",
-                    SUCCESS_EMOJIS.choose(&mut rand::thread_rng()).unwrap()
+                    "You found the word {}! {} - {}",
+                    SUCCESS_EMOJIS.choose(&mut rand::thread_rng()).unwrap(),
+                    stringified_word,
+                    def,
                 );
             }
         } else {
-            self.message = format!(
-                "The word was \"{}\"",
-                self.word.iter().collect::<String>(),
-            );
+            self.message = format!("The word was \"{}\" - {}", stringified_word, def);
         }
     }
 
@@ -635,13 +663,11 @@ impl State {
             .signed_duration_since(epoch)
             .num_days() as u64;
 
-        let no_of_daily_words: u64 = DAILY_WORDS
-        .lines().count() as u64;
+        let no_of_daily_words: u64 = DAILY_WORDS.lines().count() as u64;
         let rng = rand::rngs::StdRng::seed_from_u64(index).gen_range(0..no_of_daily_words) as usize;
         rng
     }
 
-    
     pub fn get_daily_word(&self) -> Vec<char> {
         DAILY_WORDS
             .lines()

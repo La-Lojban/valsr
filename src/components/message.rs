@@ -2,7 +2,8 @@ use yew::prelude::*;
 
 const FORMS_LINK_TEMPLATE_ADD: &str = "https://discord.gg/4KhzRzpmVr";
 const FORMS_LINK_TEMPLATE_DEL: &str = "https://discord.gg/4KhzRzpmVr";
-const DICTIONARY_LINK_TEMPLATE: &str = "https://la-lojban.github.io/sutysisku/lojban/index.html#seskari=catni&sisku=";
+const DICTIONARY_LINK_TEMPLATE: &str =
+    "https://la-lojban.github.io/sutysisku/lojban/index.html#seskari=catni&sisku=";
 
 #[derive(Properties, Clone, PartialEq)]
 pub struct Props {
@@ -18,7 +19,7 @@ pub struct Props {
 pub fn message(props: &Props) -> Html {
     html! {
         <div class="message">
-            { &props.message }
+            {&props.message}
             <div class="message-small">{{
                 if props.is_unknown {
                     let last_guess = props.last_guess.to_lowercase();
