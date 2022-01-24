@@ -34,7 +34,7 @@ pub fn header(props: &Props) -> Html {
         <header>
             <nav onclick={onclick_help} class="title-icon">{"?"}</nav>
             {
-                if props.game_mode == GameMode::DailyWord {
+                if let GameMode::DailyWord(_) = props.game_mode {
                     html! { <h1 class="title">{format!("Daily word")}</h1> }
                 } else if props.streak > 0 {
                     html! { <h1 class="title">{format!("Word streak: {}", props.streak)}</h1> }

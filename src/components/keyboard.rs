@@ -117,7 +117,7 @@ pub fn keyboard(props: &Props) -> Html {
                                 { "GUESS" }
                             </button>
                         }
-                    } else if props.game_mode == GameMode::DailyWord {
+                    } else if let GameMode::DailyWord(_) = props.game_mode {
                         let callback = props.callback.clone();
                         let onmousedown = Callback::from(move |e: MouseEvent| {
                             e.prevent_default();
@@ -125,16 +125,16 @@ pub fn keyboard(props: &Props) -> Html {
                         });
 
                         html! {
-                            <button data-nosnippet="" class={classes!("keyboard-button", "keyboard-button-submit", "correct")}
+                            <button data-nosnippet="" class={classes!("keyboard-button", "keyboard-button-submit", "next")}
                                 onmousedown={onmousedown}>
-                                { "BACK" }
+                                { "NEXT" }
                             </button>
                         }
                     } else {
                         let callback = props.callback.clone();
                         let onmousedown = Callback::from(move |e: MouseEvent| {
                             e.prevent_default();
-                            callback.emit(Msg::NewGame);
+                            callback.emit(Msg::NextWord);
                         });
 
                         html! {

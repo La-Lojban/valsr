@@ -1,6 +1,7 @@
+use chrono::Local;
 use yew::prelude::*;
 
-use crate::state::{GameMode, WordList, Theme};
+use crate::state::{GameMode, Theme, WordList};
 use crate::Msg;
 
 const CHANGELOG_URL: &str = "https://github.com/La-Lojban/valsr/blob/master/CHANGELOG.md";
@@ -8,20 +9,18 @@ const VERSION: &str = "v1.8";
 const LIVE_CHAT: &str = "https://discord.gg/4KhzRzpmVr";
 
 macro_rules! onmousedown {
-    ( $cb:ident, $msg:expr ) => {
-        {
-            let $cb = $cb.clone();
-            Callback::from(move |e: MouseEvent| {
-                e.prevent_default();
-                $cb.emit($msg);
-            })
-        }
-    };
+    ( $cb:ident, $msg:expr ) => {{
+        let $cb = $cb.clone();
+        Callback::from(move |e: MouseEvent| {
+            e.prevent_default();
+            $cb.emit($msg);
+        })
+    }};
 }
 
 #[derive(Properties, Clone, PartialEq)]
 pub struct HelpModalProps {
-    pub callback: Callback<Msg>
+    pub callback: Callback<Msg>,
 }
 
 #[function_component(HelpModal)]
@@ -34,7 +33,6 @@ pub fn help_modal(props: &HelpModalProps) -> Html {
             <span onmousedown={toggle_help} class="modal-close">{"✖"}</span>
             <p>{"Guess the hidden "}<i>{"word"}</i>{" in six tries."}</p>
             <p>{"After each guess the letters change color."}</p>
-    
             <div class="row-5 example">
                 <div class={classes!("tile", "correct")}>{"B"}</div>
                 <div class={classes!("tile", "absent")}>{"A"}</div>
@@ -42,11 +40,9 @@ pub fn help_modal(props: &HelpModalProps) -> Html {
                 <div class={classes!("tile", "absent")}>{"G"}</div>
                 <div class={classes!("tile", "absent")}>{"U"}</div>
             </div>
-    
             <p><span class="present">{"Yellow"}</span>{": The letter is in the word, but in the wrong spot."}</p>
             <p><span class="correct">{"Green"}</span>{": The letter is in the word and in the correct spot."}</p>
             <p><span class="absent">{"Gray"}</span>{": The letter is not in the word."}</p>
-    
             <p>
                 {"The word list to be used can be changed from the settings. "}
                 {"The common list includes the most common gismu. The full list includes all the gismu and all the lujvo that has 6 characters."}
@@ -61,7 +57,6 @@ pub fn help_modal(props: &HelpModalProps) -> Html {
                         </a>
 
             </p>
-            
         </div>
     }
 }
@@ -84,12 +79,15 @@ pub struct MenuModalProps {
 pub fn menu_modal(props: &MenuModalProps) -> Html {
     let callback = props.callback.clone();
 
+    let today = Local::now().naive_local().date();
+
     let toggle_menu = onmousedown!(callback, Msg::ToggleMenu);
     let change_word_length_5 = onmousedown!(callback, Msg::ChangeWordLength(5));
     let change_word_length_6 = onmousedown!(callback, Msg::ChangeWordLength(6));
     let change_game_mode_classic = onmousedown!(callback, Msg::ChangeGameMode(GameMode::Classic));
     let change_game_mode_relay = onmousedown!(callback, Msg::ChangeGameMode(GameMode::Relay));
-    let change_game_mode_daily = onmousedown!(callback, Msg::ChangeGameMode(GameMode::DailyWord));
+    let change_game_mode_daily =
+        onmousedown!(callback, Msg::ChangeGameMode(GameMode::DailyWord(today)));
     let change_word_list_full = onmousedown!(callback, Msg::ChangeWordList(WordList::Full));
     let change_word_list_common = onmousedown!(callback, Msg::ChangeWordList(WordList::Common));
     let change_allow_profanities_yes = onmousedown!(callback, Msg::ChangeAllowProfanities(true));
@@ -97,48 +95,58 @@ pub fn menu_modal(props: &MenuModalProps) -> Html {
     let change_theme_dark = onmousedown!(callback, Msg::ChangeTheme(Theme::Dark));
     let change_theme_colorblind = onmousedown!(callback, Msg::ChangeTheme(Theme::Colorblind));
 
+    let is_daily_word = matches!(props.game_mode, GameMode::DailyWord(_));
+
     html! {
         <div class="modal">
             <span onmousedown={toggle_menu} class="modal-close">{"✖"}</span>
-            // <div>
-            //     <label class="label">{"Word length:"}</label>
-            //     <div class="select-container">
-            //         <button class={classes!("select", (props.word_length == 5).then(|| Some("select-active")))}
-            //             onmousedown={change_word_length_5}>
-            //             {"5 characters"}
-            //         </button>
-            //         <button class={classes!("select", (props.word_length == 6).then(|| Some("select-active")))}
-            //             onmousedown={change_word_length_6}>
-            //             {"6 characters"}
-            //         </button>
-            //     </div>
-            // </div>
-            // <div>
-            //     <label class="label">{"The word list:"}</label>
-            //     <div class="select-container">
-            //         <button class={classes!("select", (props.current_word_list == WordList::Common).then(|| Some("select-active")))}
-            //             onmousedown={change_word_list_common}>
-            //             {"Common"}
-            //         </button>
-            //         <button class={classes!("select", (props.current_word_list == WordList::Full).then(|| Some("select-active")))}
-            //             onmousedown={change_word_list_full}>
-            //             {"Full"}
-            //         </button>
-            //     </div>
-            // </div>
-            <div>
-                <label class="label">{"Experimental gismu:"}</label>
-                <div class="select-container">
-                    <button class={classes!("select", (!props.allow_profanities).then(|| Some("select-active")))}
-                        onmousedown={change_allow_profanities_no}>
-                        {"No"}
-                    </button>
-                    <button class={classes!("select", (props.allow_profanities).then(|| Some("select-active")))}
-                        onmousedown={change_allow_profanities_yes}>
-                        {"Yes"}
-                    </button>
-                </div>
-            </div>
+            {if !is_daily_word {
+                html! {
+                    <>
+                        // <div>
+                        //     <label class="label">{"Sanulien pituus:"}</label>
+                        //     <div class="select-container">
+                        //         <button class={classes!("select", (props.word_length == 5).then(|| Some("select-active")))}
+                        //             onmousedown={change_word_length_5}>
+                        //             {"5 merkkiä"}
+                        //         </button>
+                        //         <button class={classes!("select", (props.word_length == 6).then(|| Some("select-active")))}
+                        //             onmousedown={change_word_length_6}>
+                        //             {"6 merkkiä"}
+                        //         </button>
+                        //     </div>
+                        // </div>
+                        // <div>
+                        //     <label class="label">{"Sanulista:"}</label>
+                        //     <div class="select-container">
+                        //         <button class={classes!("select", (props.current_word_list == WordList::Common).then(|| Some("select-active")))}
+                        //             onmousedown={change_word_list_common}>
+                        //             {"Suppea"}
+                        //         </button>
+                        //         <button class={classes!("select", (props.current_word_list == WordList::Full).then(|| Some("select-active")))}
+                        //             onmousedown={change_word_list_full}>
+                        //             {"Laaja"}
+                        //         </button>
+                        //     </div>
+                        // </div>
+                        <div>
+                            <label class="label">{"Experimental gismu:"}</label>
+                            <div class="select-container">
+                                <button class={classes!("select", (!props.allow_profanities).then(|| Some("select-active")))}
+                                    onmousedown={change_allow_profanities_no}>
+                                    {"No"}
+                                </button>
+                                <button class={classes!("select", (props.allow_profanities).then(|| Some("select-active")))}
+                                    onmousedown={change_allow_profanities_yes}>
+                                    {"Yes"}
+                                </button>
+                            </div>
+                        </div>
+                    </>
+                }
+            } else {
+                html! {}
+            }}
             <div>
                 <label class="label">{"Game mode:"}</label>
                 <div class="select-container">
@@ -150,7 +158,7 @@ pub fn menu_modal(props: &MenuModalProps) -> Html {
                         onmousedown={change_game_mode_relay}>
                         {"Word chain"}
                     </button>
-                    <button class={classes!("select", (props.game_mode == GameMode::DailyWord).then(|| Some("select-active")))}
+                    <button class={classes!("select", is_daily_word.then(|| Some("select-active")))}
                         onclick={change_game_mode_daily}>
                         {"Daily word"}
                     </button>
