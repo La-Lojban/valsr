@@ -1,6 +1,26 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## v1.10 - 2022-01-25
+
+### Added
+- Sharing the daily sanuli solutions as emojis
+
+### Changed
+
+### Fixed
+
+
+## v1.9 - 2022-01-24
+
+### Added
+
+### Changed
+
+### Fixed
+- Fixed issues related to the daily word when date changes
+- When refreshing the page new daily word is shown if the daily word game was open and date has changed
+
 
 ## v1.8 - 2022-01-22
 

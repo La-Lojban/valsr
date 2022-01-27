@@ -31,7 +31,7 @@ $ touch profanities.txt
 
 Start the UI in development mode
 ```
-$ trunk serve
+$ RUSTFLAGS=--cfg=web_sys_unstable_apis trunk serve --port=9090
 ```
 
 ## Word lists
@@ -63,7 +63,7 @@ which creates a `full-words-generated.txt` file in the working directory.
 For development, start the web server with
 
 ```
-$ trunk serve
+$ RUSTFLAGS=--cfg=web_sys_unstable_apis trunk serve
 ```
 
 This should make the UI available at 0.0.0.0:8080 with hot reload on code changes.
@@ -71,13 +71,13 @@ This should make the UI available at 0.0.0.0:8080 with hot reload on code change
 To change the default port, use
 
 ```
-$ trunk serve --port=9090
+$ RUSTFLAGS=--cfg=web_sys_unstable_apis trunk serve --port=9090
 ```
 
 ## Release build
 
 ```
-$ trunk build --release
+$ RUSTFLAGS=--cfg=web_sys_unstable_apis trunk build --release
 ```
 
 and copy the produced `docs` directory to your target server.

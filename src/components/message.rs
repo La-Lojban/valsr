@@ -1,5 +1,8 @@
 use yew::prelude::*;
 
+use crate::state::GameMode;
+use crate::Msg as GameMsg;
+
 const FORMS_LINK_TEMPLATE_ADD: &str = "https://discord.gg/4KhzRzpmVr";
 const FORMS_LINK_TEMPLATE_DEL: &str = "https://discord.gg/4KhzRzpmVr";
 const DICTIONARY_LINK_TEMPLATE: &str =
@@ -13,41 +16,125 @@ pub struct Props {
     pub is_guessing: bool,
     pub word: String,
     pub last_guess: String,
+    pub game_mode: GameMode,
+    pub callback: Callback<GameMsg>,
 }
 
-#[function_component(Message)]
-pub fn message(props: &Props) -> Html {
-    html! {
-        <div class="message">
-            {&props.message}
-            <div class="message-small">{{
-                if props.is_unknown {
-                    let last_guess = props.last_guess.to_lowercase();
+pub struct Message {
+    is_emojis_copied: bool,
+}
 
-                    html! {
-                        <a class="link" href={format!("{}{}", FORMS_LINK_TEMPLATE_ADD, last_guess)}
-                            target="_blank">{ "Suggest a new word?" }
-                        </a>
-                    }
-                } else if !props.is_winner & !props.is_guessing {
-                    let word = props.word.to_lowercase();
+pub enum Msg {
+    SetIsEmojisCopied(bool),
+}
 
-                    html! {
-                        <>
-                            <a class="link" href={format!("{}{}&bangu=en&versio=masno", DICTIONARY_LINK_TEMPLATE, word)}
-                                target="_blank">{ "Dictionary" }
+impl Component for Message {
+    type Message = Msg;
+    type Properties = Props;
+
+    fn create(_ctx: &Context<Self>) -> Self {
+        Self {
+            is_emojis_copied: false,
+        }
+    }
+
+    fn update(&mut self, _ctx: &Context<Self>, msg: Self::Message) -> bool {
+        match msg {
+            Msg::SetIsEmojisCopied(is_copied) => {
+                self.is_emojis_copied = is_copied;
+            }
+        }
+        true
+    }
+
+    fn rendered(&mut self, ctx: &Context<Self>, first_render: bool) {
+        if !first_render {
+            return;
+        }
+
+        if self.is_emojis_copied {
+            ctx.link().send_message(Msg::SetIsEmojisCopied(false));
+        }
+    }
+
+    fn view(&self, ctx: &Context<Self>) -> Html {
+        let props = ctx.props();
+
+        html! {
+            <div class="message">
+                { &props.message }
+                <div class="message-small">{{
+                    if props.is_unknown {
+                        let last_guess = props.last_guess.to_lowercase();
+                        html! {
+                            <a class="link" href={format!("{}{}", FORMS_LINK_TEMPLATE_ADD, last_guess)}
+                                target="_blank">{ "Suggest a new word?" }
                             </a>
-                            {" | "}
-                            <a class="link" href={format!("{}{}", FORMS_LINK_TEMPLATE_DEL, word)}
-                                target="_blank">{ "Suggest a removal?" }
-                            </a>
-                        </>
+                        }
+                    } else if !props.is_winner & !props.is_guessing {
+                        let word = props.word.to_lowercase();
+
+                        html! {
+                            <>
+                                <a class="link" href={format!("{}{}?searchMode=all", DICTIONARY_LINK_TEMPLATE, word)}
+                                    target="_blank">{ "Dictionary" }
+                                </a>
+                                {" | "}
+                                {
+                                    if matches!(props.game_mode, GameMode::DailyWord(_)) {
+                                        let callback = props.callback.clone();
+                                        let onclick = ctx.link().callback(move |e: MouseEvent| {
+                                            e.prevent_default();
+                                            callback.emit(GameMsg::ShareEmojis);
+                                            Msg::SetIsEmojisCopied(true)
+                                        });
+
+                                        html! {
+                                            if !self.is_emojis_copied {
+                                                <a class="link" href={"javascript:void(0)"} {onclick}>
+                                                    {"Copy the emoji?"}
+                                                </a>
+                                            } else {
+                                                <a class="link" {onclick}>
+                                                    {"Copied!"}
+                                                </a>
+                                            }
+                                        }
+                                    } else {
+                                        html! {
+                                            <a class="link" href={format!("{}{}", FORMS_LINK_TEMPLATE_DEL, word)}
+                                                target="_blank">{ "Suggest removal?" }
+                                            </a>
+                                        }
+                                    }
+                                }
+                            </>
+                        }
+                    } else if !props.is_guessing && matches!(props.game_mode, GameMode::DailyWord(_)) {
+                        let callback = props.callback.clone();
+                        let onclick = ctx.link().callback(move |e: MouseEvent| {
+                            e.prevent_default();
+                            callback.emit(GameMsg::ShareEmojis);
+                            Msg::SetIsEmojisCopied(true)
+                        });
+
+                        html! {
+                            if !self.is_emojis_copied {
+                                <a class="link" href={"javascript:void(0)"} {onclick}>
+                                    {"Copy the game to clipboard?"}
+                                </a>
+                            } else {
+                                <a class="link" {onclick}>
+                                    {"Copied!"}
+                                </a>
+                            }
+                        }
+                    } else {
+                        html! {}
                     }
-                } else {
-                    html! {}
-                }
-            }}
+                }}
+                </div>
             </div>
-        </div>
+        }
     }
 }
