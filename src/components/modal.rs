@@ -6,7 +6,7 @@ use crate::Msg;
 
 const LIVE_CHAT: &str = "https://discord.gg/4KhzRzpmVr";
 const CHANGELOG_URL: &str = "https://github.com/La-Lojban/valsr/blob/master/CHANGELOG.md";
-const VERSION: &str = "v1.10";
+const VERSION: &str = "v1.11";
 
 macro_rules! onmousedown {
     ( $cb:ident, $msg:expr ) => {{
