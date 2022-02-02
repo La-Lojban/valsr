@@ -76,7 +76,7 @@ impl Component for Message {
 
                         html! {
                             <>
-                                <a class="link" href={format!("{}{}?searchMode=all", DICTIONARY_LINK_TEMPLATE, word)}
+                                <a class="link" href={format!("{}{}", DICTIONARY_LINK_TEMPLATE, word)}
                                     target="_blank">{ "Dictionary" }
                                 </a>
                                 {" | "}
