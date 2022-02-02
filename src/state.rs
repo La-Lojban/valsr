@@ -17,6 +17,7 @@ use rand::SeedableRng;
 use regex::Regex;
 
 const DEFINITIONS: &str = include_str!("../definitions.txt");
+const HINTS: &str = include_str!("../hints.txt");
 const FULL_WORDS: &str = include_str!("../full-words.txt");
 const COMMON_WORDS: &str = include_str!("../common-words.txt");
 const DAILY_WORDS: &str = include_str!("../daily-words.txt");
@@ -211,6 +212,7 @@ impl State {
 
             state.game = game;
             state.word_lists = word_lists;
+            state.game.clear_message();
 
             state
         } else {
@@ -240,6 +242,7 @@ impl State {
 
             let _res = state.persist();
             let _res = state.game.persist();
+            state.game.clear_message();
 
             state
         }
@@ -267,6 +270,7 @@ impl State {
     }
 
     pub fn change_game_mode(&mut self, new_mode: GameMode) {
+        self.game.clear_message();
         if self.current_game_mode == new_mode {
             return;
         }
@@ -285,6 +289,7 @@ impl State {
             // the previous game in state
             self.current_word_list = WordList::default();
         }
+        self.game.clear_message();
 
         self.current_game_mode = new_mode;
         self.switch_active_game();
@@ -338,8 +343,9 @@ impl State {
         let _result = self.persist();
         true
     }
-
+    
     fn switch_active_game(&mut self) -> bool {
+        self.game.clear_message();
         let next_game = (
             self.current_game_mode,
             self.current_word_list,
@@ -372,6 +378,8 @@ impl State {
             )
         });
 
+        self.game.clear_message();
+
         // For playing the animation populate previous_guesses
         if previous_game.2 <= next_game.2 {
             game.previous_guesses = self.game.guesses.clone();
@@ -390,6 +398,7 @@ impl State {
         }
         game.is_reset = true;
 
+        game.clear_message();
         self.background_games
             .insert(previous_game, mem::replace(&mut self.game, game));
 
@@ -500,7 +509,7 @@ impl Game {
                 &word_lists,
             )
         };
-
+        
         Self {
             game_mode,
             word_list,
@@ -671,7 +680,6 @@ impl Game {
         self.is_winner = false;
         self.is_reset = true;
         self.clear_message();
-
         let _result = self.persist();
 
         true
@@ -896,11 +904,40 @@ impl Game {
         self.is_winner || self.current_guess == self.max_guesses - 1
     }
 
-    fn clear_message(&mut self) {
-        self.is_unknown = false;
-        self.message = EMPTY.to_string();
+    fn get_hint(&mut self, word: &std::string::String) -> std::string::String {
+        let definition = self.get_word_hint(word);
+        let formatted = format!("{}", definition);
+        formatted
     }
 
+    fn clear_message(&mut self) {
+        self.is_unknown = false;
+
+        let word = &self.word.iter().collect::<String>();
+        self.message = self.get_hint(word);// EMPTY.to_string();
+    }
+
+    fn get_word_hint(&mut self, word: &str) -> String {
+        let mut word_with_suffix = word.clone().to_owned().to_lowercase();
+        word_with_suffix.push_str(&"\t");
+
+        let line = HINTS
+            .lines()
+            .filter(|x| {
+                if x.starts_with(&word_with_suffix) {
+                    true
+                } else {
+                    false
+                }
+            })
+            .nth(0)
+            .unwrap_or("");
+        let re = Regex::new(r"[$_{}]").unwrap();
+        let re2 = Regex::new(r"^.*\t").unwrap();
+        let mut result = re.replace_all(line, "").to_string();
+        result = re2.replace_all(&result, "").to_string();
+        result
+    }
     fn get_word_definition(&mut self, word: &str) -> String {
         let mut word_with_suffix = word.clone().to_owned().to_lowercase();
         word_with_suffix.push_str(&"\t");
