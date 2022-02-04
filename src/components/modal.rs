@@ -103,19 +103,19 @@ pub fn menu_modal(props: &MenuModalProps) -> Html {
             {if !is_daily_word {
                 html! {
                     <>
-                        // <div>
-                        //     <label class="label">{"Sanulien pituus:"}</label>
-                        //     <div class="select-container">
-                        //         <button class={classes!("select", (props.word_length == 5).then(|| Some("select-active")))}
-                        //             onmousedown={change_word_length_5}>
-                        //             {"5 merkkiä"}
-                        //         </button>
-                        //         <button class={classes!("select", (props.word_length == 6).then(|| Some("select-active")))}
-                        //             onmousedown={change_word_length_6}>
-                        //             {"6 merkkiä"}
-                        //         </button>
-                        //     </div>
-                        // </div>
+                        <div>
+                            <label class="label">{"Word length:"}</label>
+                            <div class="select-container">
+                                <button class={classes!("select", (props.word_length == 5).then(|| Some("select-active")))}
+                                    onmousedown={change_word_length_5}>
+                                    {"5 letters"}
+                                </button>
+                                <button class={classes!("select", (props.word_length == 6).then(|| Some("select-active")))}
+                                    onmousedown={change_word_length_6}>
+                                    {"6 letters"}
+                                </button>
+                            </div>
+                        </div>
                         // <div>
                         //     <label class="label">{"Sanulista:"}</label>
                         //     <div class="select-container">

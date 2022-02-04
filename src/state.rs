@@ -18,7 +18,6 @@ use regex::Regex;
 
 const DEFINITIONS: &str = include_str!("../definitions.txt");
 const HINTS: &str = include_str!("../hints.txt");
-const FULL_WORDS: &str = include_str!("../full-words.txt");
 const COMMON_WORDS: &str = include_str!("../common-words.txt");
 const DAILY_WORDS: &str = include_str!("../daily-words.txt");
 const PROFANITIES: &str = include_str!("../profanities.txt");
@@ -33,7 +32,10 @@ type WordLists = HashMap<(WordList, usize), HashSet<Vec<char>>>;
 
 fn parse_all_words() -> Rc<WordLists> {
     let mut word_lists: HashMap<(WordList, usize), HashSet<Vec<char>>> = HashMap::with_capacity(3);
-    for word in FULL_WORDS.lines() {
+    let definition_line_part = Regex::new(r"\t.*").unwrap();
+    for line in DEFINITIONS.lines() {
+        let word = definition_line_part.replace_all(&line, "").to_string().to_uppercase();
+
         let chars = word.chars();
         let word_length = chars.clone().count();
         word_lists
@@ -48,6 +50,10 @@ fn parse_all_words() -> Rc<WordLists> {
         word_lists
             .entry((WordList::Common, word_length))
             .or_insert_with(HashSet::new)
+            .insert(chars.clone().collect());
+        word_lists
+            .entry((WordList::Full, word_length))
+            .or_insert_with(HashSet::new)
             .insert(chars.collect());
     }
 
@@ -56,6 +62,10 @@ fn parse_all_words() -> Rc<WordLists> {
         let word_length = chars.clone().count();
         word_lists
             .entry((WordList::Profanities, word_length))
+            .or_insert_with(HashSet::new)
+            .insert(chars.clone().collect());
+        word_lists
+            .entry((WordList::Full, word_length))
             .or_insert_with(HashSet::new)
             .insert(chars.collect());
     }
@@ -345,7 +355,6 @@ impl State {
     }
     
     fn switch_active_game(&mut self) -> bool {
-        self.game.clear_message();
         let next_game = (
             self.current_game_mode,
             self.current_word_list,
@@ -377,8 +386,6 @@ impl State {
                 self.word_lists.clone(),
             )
         });
-
-        self.game.clear_message();
 
         // For playing the animation populate previous_guesses
         if previous_game.2 <= next_game.2 {
@@ -918,7 +925,7 @@ impl Game {
     }
 
     fn get_word_hint(&mut self, word: &str) -> String {
-        let mut word_with_suffix = word.clone().to_owned().to_lowercase();
+        let mut word_with_suffix = word.clone().to_owned();
         word_with_suffix.push_str(&"\t");
 
         let line = HINTS
@@ -939,7 +946,7 @@ impl Game {
         result
     }
     fn get_word_definition(&mut self, word: &str) -> String {
-        let mut word_with_suffix = word.clone().to_owned().to_lowercase();
+        let mut word_with_suffix = word.clone().to_owned();
         word_with_suffix.push_str(&"\t");
 
         let line = DEFINITIONS

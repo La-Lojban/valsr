@@ -23,9 +23,10 @@ $ cargo install wasm-bindgen-cli
 Create word list files and populate them with uppercase words, one per line
 
 ```
+$ touch definitions.txt
+$ touch hints.txt
 $ touch common-words.txt
 $ touch daily-words.txt
-$ touch full-words.txt
 $ touch profanities.txt
 ```
 
@@ -39,10 +40,11 @@ $ RUSTFLAGS=--cfg=web_sys_unstable_apis trunk serve --port=9090
 Three separate word list files in the root of this project containing all the words are required. The lists are not included in this repository.
 
 The lists are:
-- `full-words.txt` - Full list of all accepted 5 and 6 character words. The checks if a word real or not is done against this list
-- `daily-words.txt` - List of daily words. The daily word is taken from row equal to the days from 2022-01-07.
-- `common-words.txt` - Subset of the full words list, intended for easier game mode. Note that all these words _must_ exist on the `full-words.txt`
-- `profanities.txt` - Words filtered out when profanities filter is enabled
+- `definitions.txt` - Full list of all accepted 5 and 6 character words. Each line is `word "tab-separator" word definition`. The checks if a word real or not is done against this list. Word definitions after a successful guess are shown from this file too.
+- `hints.txt` - a list of Lojban definitions of words. Used to provide hints while playing. May not contains definitions for all words from definitions.txt.
+- `daily-words.txt` - a list of daily words. The daily word is taken from row equal to the days from 2022-01-07.
+- `common-words.txt` - a subset of the definitions list, intended for easier game mode
+- `profanities.txt` - Words from here are included into games when "experimental gismu" mode is enabled
 
 Beware that these are _included in the release binary_, and anyone can obtain the lists!
 
