@@ -788,7 +788,7 @@ KAVBU	pinfu gau je
 KECTI	sarxe ja xendo cinmo lo ka badri lo nu malfri ja malselfu'a
 KEIDJI	lo ka keidji cu ka ce'u goi zo'e djica lo nu kelci ce'u xi re goi kei ce'u goi
 KEITCI	tutci lo ka se kelci
-KELCI	se zdile ja xalbo lo ka zukte tu'a
+KELCI	se zdile ja xalbo lo ka zukte
 KELDAI	dacti gi'e se pilno fi lo ka kelci
 KELVO	klani zo'e lo sornai rauci'e ni glare
 KENRA	te bilma fi zo'e fe lo xlali je gunta nu lo selci cu trocau lo ka banro
@@ -1253,7 +1253,7 @@ RAGVE	bancu zo'e zo'e le ka ce'u zvati makau
 RAKSO	ckini lo kulnu ja bangu ja cecmu ja natmi pe lo gugde'ike
 RALJU	traji fi zo'e fe lo ka vajni
 RALTE	gasnu ja curmi lo nu stali lo ka ce'u me zo'e moi
-RANDA	na'e fanta lo nu bapli tu'a
+RANDA	na'e fanta lo nu bapli
 RANDA	na'e renvi
 RANDA	co'u fapro
 RANMI	lisri zo'e lo dzena be lo se kulnu
