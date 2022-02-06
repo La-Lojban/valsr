@@ -110,7 +110,7 @@ BOXNA	punli ja tolku'o
 BRABRA	mutce loka ce'u barda kei zi'o
 BRACAI	carmi loka ce'u barda
 BRADI	fapro gi'e xebni gi'e djica lo ka daspo ja xrani
-BRAILE	ti noi
+BRAILE	ti noi la'o fy. Louis Braille .fy pu finti ke'a cu lerfu ciste lo lerfu poi ro ke'a gunma lo mokcybarna poi punli
 BRAILE	se finti fi lo ka se tcidu lo vi'anka ta'i lo nu ri pencu lo lerfu lo xandegjyjipno
 BRATU	sligu gi'e ba'o dunja gi'e carvi fi lo varsenta
 BRAZO	ckini lo kulnu ja bangu ja cecmu ja natmi pe lo gugdeburu
@@ -212,7 +212,7 @@ CILTA	mutce lo ka jarki je cinla kei slanu
 CIMDE	se ckaji gi'e ka'e te klani fi gi'e ka'e ve merli
 CINBA	pencu zo'e lo ctebi
 CINDU	jdari mudri tricu
-CINFO	bramlatu
+CINFO	bramlatu zo'e noi jutsi la'o jutsi Panthera leo jutsi gi'e se krasi lo friko jo'u lo snanu xadzo gi'e se rebla se jipno be lo krebakfu
 CINFO	lo nakni cu se ne'okre lo barda
 CINJE	cmalu skuro ja tolku'o
 CINLA	cmalu zo'e noi cmarai cimde
@@ -238,7 +238,7 @@ CITRI	lisri lo gunma be lo pu fasnu poi srana
 CIVLA	blusakci je na'ircau cinki
 CIZMAU	zmadu zo'e lo ka ce'u cizra
 CIZRA	frica lo se kanpe
-CKAFI	litki gi'e se jukpa fi lo ka gasnu lo nu lo dembi be zo'e noi na'o tricu
+CKAFI	litki gi'e se jukpa fi lo ka gasnu lo nu lo dembi be zo'e noi na'o tricu la'o jutygunma Coffea jutygunma cu jinru je runta lo djacu
 CKAGAI	gacri lo ckana
 CKAJI	sumti zo'e ja'e lo jetnu
 CKAJI	se sumti pa da
@@ -365,7 +365,7 @@ DARXI	gasnu lo nu ti noi pagbu cu janli zo'e noi pagbu
 DASNI	pilno zo'e lo nu taxfu
 DASPO	rinka lo nu spofu gi'a porpi gi'a binxo lo na ka'e se pilno kei ja'e lo nu na ka'e se cikre
 DASRI	clani je jarki je cinla je toltinsa marji
-DATKA	limna cipni
+DATKA	limna cipni zo'e noi jutsi la'o jutygunma Anas jutygunma ku'o gi'e se ja'urxe'a lo ganra
 DATMAU	drata ro klesi be zo'e poi na du zo'e ku'o gi'e zmadu ro klesi be zo'e poi na du
 DATNI	fatci gi'e srana gi'e se cpacu ta'i
 DATPRE	prenu gi'e drata
@@ -575,7 +575,7 @@ GUMRI	mledi gi'e na'o se stani lo tordu gi'e na'o se galraipau lo balji ja santa
 GUNBRE	bredi lo nu vo'a gunka
 GUNMA	se cmima ro me zo'e me'u .e no na'e bo
 GUNRO	cpana gi'e muvdu ta'i lo ka carna kei tai mu'a tu'a lo bolci .a lo xislu
-GUNSE	limna cipni
+GUNSE	limna cipni zo'e noi jutsi la'o jutygunma Anser jutygunma .a la'o jutygunma Branta jutygunma ku'o gi'e na'o zmadu lo datka lo ni ce'u barda .e lo ni lo cnebo jo'u tuple be ce'u cu clani
 GUNTA	gasnu lo nu lifri lo vlile kei te zu'e
 GURNI	cmalu je jdari tsiju zo'e noi cidja spati gi'e mu'a maxri ja zumri ja mavji ja rismi ja cunmi ja bavmi ja mraji ja sobde ja sorgu
 GUSKLI	klina zo'e poi ke'a gusni
@@ -886,7 +886,7 @@ LARPRA	cupra zo'e lo larcu
 LASNA	gasnu lo nu jorne kei se pi'o
 LASTU	jinme zo'e noi se ralju lo mixre be lo tunka jo'u lo zinki
 LATMO	ckini lo kulnu ja bangu ja cecmu ja natmi pe lo banlu'atu
-LATNA	spati gi'e jutsi
+LATNA	spati gi'e jutsi zo'e la'o jutsi Nelumbo jutsi gi'e jai sinxa zo'e zo'e noi se kulnu
 LATXLI	nixli gi'e ckaji su'o se ckaji be lo'e mlatu
 LAUCMO	cmoni zo'e noi cladu
 LAZNI	se tcaci lo ka rivbi lo ka gunka ja tolsurla
@@ -1106,7 +1106,7 @@ NUZBA	datni zo'e fi gi'e cnino zo'e lo ka jetnu
 NUZLO	ckini lo kulnu ja bangu ja cecmu ja natmi pe lo gugdenuzu
 O'ANMO	.o'a zei cinmo
 O'ANMO	cinmo lo ka ce'u jgira
-ODBENU	barda ke xamsi mabru zo'e noi jutsi la'e ly odobenidae ly
+ODBENU	barda ke xamsi mabru
 ODBENU	ta'e xabju lei berti xamsi
 ODBENU	se skapi lo'e jdari je tilju gi'e se denci lo remei poi clani gi'e barku'e le moklu
 O'ENMO	.o'e zei cinmo
@@ -1321,7 +1321,7 @@ SAKLI	muvdu fo zo'e noi xutla ku'o fau lo nu ru'i pencu
 SALCI	jarco lo ka sinma kei ta'i lo nu zukte
 SALPO	jbini lo pinta be zo'e be'o jo'u lo sraji be .i je jganu lo terkruca be zo'e bei zo'e lo tersei
 SAMCFI	cfila zo'e poi ke'a samtci gi'a skami
-SAMCU	genja je stagi zo'e noi mu'a jutsi
+SAMCU	genja je stagi
 SAMKEI	kelci zo'e po'u lo skami
 SAMPRE	ca'e lo ka ce'u goi zo'e sampre ce'u goi cu ka ce'u goi zo'e prenu gi'e skami ce'u goi
 SAMPU	jai frili
@@ -1409,7 +1409,7 @@ SLILU	dikni lo ka ckaji zo'e noi rapli la'u zo'e noi ni cafne
 SMADI	jinvi zo'e zo'e lo na'e banzu
 SMAJI	seltinynalka'e lo'e zvati be zo'e ma'i
 SMAJI	se sance no da
-SMANI	mabru
+SMANI	mabru zo'e noi jutsi la'o lazgunma Primates lazgunma ku'o gi'e na'o na'e remna
 SMASKU	skuna je bacru zo'e fau lo nu lo vokcinje be zo'e na desku
 SMIMLU	simlu lo ka ce'u simsa
 SMUDJI	.aidji [tu'a] lo nu smuni zo'e noi zo'e cusku ku'o lo te cusku
@@ -1459,7 +1459,7 @@ SPALI	gasnu lo nu xutla je carmi kei ta'i lo nu punji je mosra
 SPANO	ckini lo kulnu ja bangu ja cecmu ja natmi pe lo bansupu'a ja gugde'esu
 SPATI	jmive gi'e cmima
 SPENI	jorne zo'e lo ka se lanzu kei se ja'e zo'e noi tcaci ja flalu
-SPERO	ckini lo kulnu ja bangu ja cecmu pe
+SPERO	ckini lo kulnu ja bangu ja cecmu pe la'o bau Esperanto bau x2
 SPISA	pagbu gi'e simsa lo drata pagbu
 SPITA	dinju ja stuzi lo nu mikce
 SPOFU	na ka'e akti
@@ -1589,7 +1589,7 @@ TIMSKE	saske lo si'o tcima ku
 TINCI	ranti jinme cmuxu'i gi'e runme va'o lo glare milxe gi'e simsa lo rijno lo ka skari je gusycai gi'e se sinxa zo'oi Sn
 TINMLU	simlu zo'e zo'e poi tirna zo'e vo'o
 TIRNA	ganse zo'e lo'e kerlo
-TIRXU	bramlatu
+TIRXU	bramlatu zo'e noi jutsi la'o jutsi Panthera tigris jutsi gi'e se krasi xadzo gi'e burpelxu gi'e se sriba'a lo xekri
 TISNA	binxo lo culno
 TISNA	clubi'o
 TITLA	se vrusi lo ka simsa lo sakta fi'o ganse
@@ -1760,7 +1760,7 @@ XENDO	jarco ta'i zo'e lo ka ce'u se vajni ja se cinri kei .e lo ka djica lo xamg
 XENRU	djica lo ka na ckaji ja zukte zo'e noi zo'e ke'a ja'a ckaji ja zukte
 XEXSO	klani li gei pa bi
 XINDO	ckini lo kulnu ja bangu ja cecmu ja natmi pe lo banxe'inu ja gugde'inu
-XIRMA	barda je spacti gi'e mabru
+XIRMA	barda je spacti gi'e mabru zo'e noi jutsi la'o jutsi. Equus ferus .jutsi ku'o gi'e se sufti gi'e se degji vo da
 XISLU	cukla tutci lo ka gunro ja carna kei gi'e pagbu zo'e noi marce ja cabra
 XLADJA	cidja gi'e xlali
 XLALI	xrani ja crogau
