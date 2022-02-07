@@ -119,6 +119,7 @@ pub fn migrate_settings_and_stats(state: &mut State) -> Result<(), JsValue> {
                                 game_id.1,
                                 game_id.2,
                                 state.allow_profanities,
+                                state.show_hints,
                                 state.word_lists.clone(),
                             );
 

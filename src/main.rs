@@ -33,6 +33,7 @@ pub enum Msg {
     ChangePreviousGameMode,
     ChangeWordLength(usize),
     ChangeWordList(WordList),
+    ChangeShowHints(bool),
     ChangeAllowProfanities(bool),
     ChangeTheme(Theme),
     ShareEmojis,
@@ -163,6 +164,12 @@ impl Component for App {
                 self.is_help_visible = false;
                 true
             }
+            Msg::ChangeShowHints(is_allowed) => {
+                self.state.change_show_hints(is_allowed);
+                self.is_menu_visible = false;
+                self.is_help_visible = false;
+                true
+            }
             Msg::ChangeTheme(theme) => {
                 self.state.change_theme(theme);
                 true
@@ -251,6 +258,7 @@ impl Component for App {
                                 word_length={self.state.current_word_length}
                                 current_word_list={self.state.current_word_list}
                                 allow_profanities={self.state.allow_profanities}
+                                show_hints={self.state.show_hints}
                                 theme={self.state.theme}
                                 max_streak={self.state.max_streak}
                                 total_played={self.state.total_played}

@@ -26,6 +26,7 @@ pub const EMPTY: char = '\u{00a0}'; // &nbsp;
 pub const DEFAULT_WORD_LENGTH: usize = 5;
 pub const DEFAULT_MAX_GUESSES: usize = 6;
 pub const DEFAULT_ALLOW_PROFANITIES: bool = false;
+pub const DEFAULT_SHOW_HINTS: bool = true;
 pub const DAILY_WORD_LEN: usize = 5;
 
 type WordLists = HashMap<(WordList, usize), HashSet<Vec<char>>>;
@@ -34,7 +35,10 @@ fn parse_all_words() -> Rc<WordLists> {
     let mut word_lists: HashMap<(WordList, usize), HashSet<Vec<char>>> = HashMap::with_capacity(3);
     let definition_line_part = Regex::new(r"\t.*").unwrap();
     for line in DEFINITIONS.lines() {
-        let word = definition_line_part.replace_all(&line, "").to_string().to_uppercase();
+        let word = definition_line_part
+            .replace_all(&line, "")
+            .to_string()
+            .to_uppercase();
 
         let chars = word.chars();
         let word_length = chars.clone().count();
@@ -148,6 +152,7 @@ pub enum CharacterCount {
 #[derive(Clone, PartialEq, Serialize, Deserialize)]
 pub struct State {
     pub allow_profanities: bool,
+    pub show_hints: bool,
     pub current_game_mode: GameMode,
     pub current_word_list: WordList,
     pub current_word_length: usize,
@@ -173,6 +178,7 @@ impl Default for State {
     fn default() -> Self {
         Self {
             allow_profanities: DEFAULT_ALLOW_PROFANITIES,
+            show_hints: DEFAULT_SHOW_HINTS,
             current_game_mode: GameMode::default(),
             current_word_list: WordList::default(),
             current_word_length: DEFAULT_WORD_LENGTH,
@@ -217,6 +223,7 @@ impl State {
                 state.current_word_list,
                 state.current_word_length,
                 state.allow_profanities,
+                state.show_hints,
                 word_lists.clone(),
             );
 
@@ -232,6 +239,7 @@ impl State {
                 WordList::Common,
                 DEFAULT_WORD_LENGTH,
                 DEFAULT_ALLOW_PROFANITIES,
+                DEFAULT_SHOW_HINTS,
                 word_lists.clone(),
             );
 
@@ -322,7 +330,9 @@ impl State {
     pub fn change_previous_game_mode(&mut self) {
         let (game_mode, word_list, word_length) = self.previous_game;
 
-        if matches!(game_mode, GameMode::DailyWord(_)) && matches!(self.current_game_mode, GameMode::DailyWord(_)) {
+        if matches!(game_mode, GameMode::DailyWord(_))
+            && matches!(self.current_game_mode, GameMode::DailyWord(_))
+        {
             // Force the user to reset to the base game
             self.current_game_mode = GameMode::default();
             self.current_word_list = WordList::default();
@@ -348,12 +358,23 @@ impl State {
         let _result = self.persist();
     }
 
+    pub fn change_show_hints(&mut self, is_allowed: bool) {
+        self.show_hints = is_allowed;
+        self.game.show_hints = self.show_hints;
+        self.game.clear_message();
+        self.background_games.values_mut().for_each(|game| {
+            game.show_hints = self.show_hints;
+            game.clear_message();
+        });
+        let _result = self.persist();
+    }
+
     pub fn change_theme(&mut self, theme: Theme) -> bool {
         self.theme = theme;
         let _result = self.persist();
         true
     }
-    
+
     fn switch_active_game(&mut self) -> bool {
         let next_game = (
             self.current_game_mode,
@@ -383,6 +404,7 @@ impl State {
                 next_game.1,
                 next_game.2,
                 self.allow_profanities,
+                self.show_hints,
                 self.word_lists.clone(),
             )
         });
@@ -461,6 +483,8 @@ pub struct Game {
     #[serde(skip)]
     pub allow_profanities: bool,
     #[serde(skip)]
+    pub show_hints: bool,
+    #[serde(skip)]
     pub word_lists: Rc<WordLists>,
     #[serde(skip)]
     pub known_states: Vec<HashMap<(char, usize), CharacterState>>,
@@ -477,6 +501,7 @@ impl Default for Game {
             WordList::default(),
             DEFAULT_WORD_LENGTH,
             DEFAULT_ALLOW_PROFANITIES,
+            DEFAULT_SHOW_HINTS,
             Rc::new(HashMap::new()),
         )
     }
@@ -488,6 +513,7 @@ impl Game {
         word_list: WordList,
         word_length: usize,
         allow_profanities: bool,
+        show_hints: bool,
         word_lists: Rc<WordLists>,
     ) -> Self {
         let max_guesses = DEFAULT_MAX_GUESSES;
@@ -516,7 +542,7 @@ impl Game {
                 &word_lists,
             )
         };
-        
+
         Self {
             game_mode,
             word_list,
@@ -525,6 +551,7 @@ impl Game {
             max_guesses,
             word,
             allow_profanities,
+            show_hints,
             is_guessing: true,
             is_winner: false,
             is_unknown: false,
@@ -544,6 +571,7 @@ impl Game {
         word_list: WordList,
         word_length: usize,
         allow_profanities: bool,
+        show_hints: bool,
         word_lists: Rc<WordLists>,
     ) -> Self {
         if let Ok(game) = Game::rehydrate(
@@ -551,6 +579,7 @@ impl Game {
             word_list,
             word_length,
             allow_profanities,
+            show_hints,
             word_lists.clone(),
         ) {
             game
@@ -560,6 +589,7 @@ impl Game {
                 word_list,
                 word_length,
                 allow_profanities,
+                show_hints,
                 word_lists,
             )
         }
@@ -921,7 +951,11 @@ impl Game {
         self.is_unknown = false;
 
         let word = &self.word.iter().collect::<String>();
-        self.message = self.get_hint(word);// EMPTY.to_string();
+        if self.show_hints == true {
+            self.message = self.get_hint(word);
+        } else {
+            self.message = EMPTY.to_string();
+        }
     }
 
     fn get_word_hint(&mut self, word: &str) -> String {
@@ -1037,7 +1071,10 @@ impl Game {
                 "X".to_owned()
             };
 
-            message += &format!("la .valsr. zo'u #{} {}/{}", index, guess_count, self.max_guesses);
+            message += &format!(
+                "la .valsr. zo'u #{} {}/{}",
+                index, guess_count, self.max_guesses
+            );
             message += "\n\n";
 
             for guess in self.guesses.iter() {
@@ -1084,6 +1121,7 @@ impl Game {
         word_list: WordList,
         word_length: usize,
         allow_profanities: bool,
+        show_hints: bool,
         word_lists: Rc<WordLists>,
     ) -> Result<Game, StorageError> {
         let game_key = &format!(
@@ -1095,6 +1133,7 @@ impl Game {
 
         let mut game: Game = LocalStorage::get(game_key)?;
         game.allow_profanities = allow_profanities;
+        game.show_hints = show_hints;
         game.word_lists = word_lists;
 
         game.known_states = std::iter::repeat(HashMap::new())

@@ -68,6 +68,7 @@ pub struct MenuModalProps {
     pub game_mode: GameMode,
     pub current_word_list: WordList,
     pub allow_profanities: bool,
+    pub show_hints: bool,
     pub theme: Theme,
 
     pub max_streak: usize,
@@ -92,6 +93,8 @@ pub fn menu_modal(props: &MenuModalProps) -> Html {
     let change_word_list_common = onmousedown!(callback, Msg::ChangeWordList(WordList::Common));
     let change_allow_profanities_yes = onmousedown!(callback, Msg::ChangeAllowProfanities(true));
     let change_allow_profanities_no = onmousedown!(callback, Msg::ChangeAllowProfanities(false));
+    let change_show_hints_yes = onmousedown!(callback, Msg::ChangeShowHints(true));
+    let change_show_hints_no = onmousedown!(callback, Msg::ChangeShowHints(false));
     let change_theme_dark = onmousedown!(callback, Msg::ChangeTheme(Theme::Dark));
     let change_theme_colorblind = onmousedown!(callback, Msg::ChangeTheme(Theme::Colorblind));
 
@@ -129,6 +132,19 @@ pub fn menu_modal(props: &MenuModalProps) -> Html {
                         //         </button>
                         //     </div>
                         // </div>
+                        <div>
+                            <label class="label">{"Show hints:"}</label>
+                            <div class="select-container">
+                                <button class={classes!("select", (!props.show_hints).then(|| Some("select-active")))}
+                                    onmousedown={change_show_hints_no}>
+                                    {"No"}
+                                </button>
+                                <button class={classes!("select", (props.show_hints).then(|| Some("select-active")))}
+                                    onmousedown={change_show_hints_yes}>
+                                    {"Yes"}
+                                </button>
+                            </div>
+                        </div>
                         <div>
                             <label class="label">{"Experimental gismu:"}</label>
                             <div class="select-container">
