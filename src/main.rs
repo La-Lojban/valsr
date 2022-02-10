@@ -200,6 +200,7 @@ impl Component for App {
                         if let Some(clipboard) = navigator.clipboard() {
                             let _promise = clipboard.write_text(link.as_str());
                         }
+                        log::info!("{}", link);
                     }
                 }
                 true
@@ -237,6 +238,7 @@ impl Component for App {
                 <Board
                     is_guessing={self.state.game.is_guessing}
                     is_reset={self.state.game.is_reset}
+                    is_hidden={self.state.game.is_hidden}
                     guesses={self.state.game.guesses.clone()}
                     previous_guesses={self.state.game.previous_guesses.clone()}
                     current_guess={self.state.game.current_guess}
@@ -249,6 +251,7 @@ impl Component for App {
                     is_unknown={self.state.game.is_unknown}
                     is_winner={self.state.game.is_winner}
                     is_guessing={self.state.game.is_guessing}
+                    is_hidden={self.state.game.is_hidden}
                     game_mode={self.state.game.game_mode}
                     message={self.state.game.message.clone()}
                     word={word}
