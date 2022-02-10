@@ -112,22 +112,36 @@ impl Component for Message {
                         }
                     } else if !props.is_guessing && matches!(props.game_mode, GameMode::DailyWord(_)) {
                         let callback = props.callback.clone();
-                        let onclick = ctx.link().callback(move |e: MouseEvent| {
+                        let share_emojis = ctx.link().callback(move |e: MouseEvent| {
                             e.prevent_default();
                             callback.emit(GameMsg::ShareEmojis);
                             Msg::SetIsEmojisCopied(true)
                         });
+                        let callback = props.callback.clone();
+                        let share_link = Callback::from(move |e: MouseEvent| {
+                            e.prevent_default();
+                            callback.emit(GameMsg::ShareLink);
+                        });
 
                         html! {
-                            if !self.is_emojis_copied {
-                                <a class="link" href={"javascript:void(0)"} {onclick}>
-                                    {"Copy the game to clipboard?"}
+                            <>
+                                <a>
+                                    {"Share your solution:\u{00a0}"}
                                 </a>
-                            } else {
-                                <a class="link" {onclick}>
-                                    {"Copied!"}
+                                <a class="link" href={"javascript:void(0)"} onclick={share_emojis}>
+                                    {
+                                        if !self.is_emojis_copied {
+                                            {"Emoji"}
+                                        } else {
+                                            {"Copied!"}
+                                        }
+                                    }
                                 </a>
-                            }
+                                {" | "}
+                                <a class="link" href={"javascript:void(0)"} onclick={share_link}>
+                                    {"Link"}
+                                </a>
+                            </>
                         }
                     } else {
                         html! {}
