@@ -645,6 +645,7 @@ impl Game {
             max_guesses,
             word,
             allow_profanities: true,
+            show_hints: true,
             is_guessing: false,
             is_winner: false,
             is_unknown: false,
