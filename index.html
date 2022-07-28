@@ -9,20 +9,68 @@
     <meta property="og:title" content="A Lojban Wordle clone" />
     <meta property="og:type" content="web app" />
     <meta property="og:url" content="https://la-lojban.github.io/valsr/" />
-    <meta property="og:image" content="https://la-lojban.github.io/valsr/valsr.jpg" />
+    <meta
+      property="og:image"
+      content="https://la-lojban.github.io/valsr/valsr.jpg"
+    />
     <meta property="og:description" content="Guess the word in six tries." />
     <link data-trunk rel="rust" data-bin="valsr" />
     <link data-trunk rel="css" href="./static/styles.css" />
-    <link data-trunk rel="copy-file" href="static/valsr.jpg"/>
-    <link data-trunk rel="copy-file" href="static/robots.txt"/>
+    <link data-trunk rel="copy-file" href="static/valsr.jpg" />
+    <link data-trunk rel="copy-file" href="static/robots.txt" />
 
-    <link rel="apple-touch-icon" sizes="144x144" href="144.png">
-    <link data-trunk rel="copy-file" href="static/144.png"/>
-    <link data-trunk rel="copy-file" href="static/32.png"/>
-    <link data-trunk rel="icon" type="image/png" sizes="32x32" href="./static/32.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="144.png" />
+    <link data-trunk rel="copy-file" href="static/144.png" />
+    <link data-trunk rel="copy-file" href="static/32.png" />
+    <link
+      data-trunk
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./static/32.png"
+    />
 
-    <meta name="theme-color" content="#ffddcc">
+    <meta name="theme-color" content="#ffddcc" />
 
     <title>A Lojban Wordle clone</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.5.1/socket.io.js"></script>
   </head>
+  <body>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        var socket1Chat_connected;
+        var socket1Chat = io("wss://jbotcan.org:9091", {
+          transports: ["polling", "websocket"],
+        });
+        // if (socket1Chat) {
+          socket1Chat.on("connect", function () {
+            console.log(socket1Chat);
+            socket1Chat_connected = true;
+          });
+          socket1Chat.on("connect_error", function () {
+            console.log("1chat connection error");
+          });
+
+          function trimSocketChunk(text) {
+            return text
+              .replace(/[\n\r]+$/gims, " ")
+              .replace(/<br *\/?>/gims, " ");
+            // .split('<')[0]
+          }
+          socket1Chat.on("sentFrom", function (data) {
+            if (!socket1Chat_connected) return;
+            const i = data.data;
+            const msg = {
+              d: trimSocketChunk(i.chunk),
+              s: i.channelId,
+              w: i.author,
+            };
+
+            const velsku = document.getElementById("velsku_sebenji");
+            velsku.innerHTML = `<img src="https://la-lojban.github.io/sutysisku/pixra/nunsku.svg" class="velsku_pixra"/> <span class="velsku_pamei">[${msg.s}] ${msg.w}: ${msg.d}</span>`;
+          });
+        // }
+      });
+    </script>
+  </body>
 </html>

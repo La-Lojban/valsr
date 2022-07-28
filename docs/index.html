@@ -6,8 +6,8 @@
     <meta property="og:url" content="https://la-lojban.github.io/valsr/">
     <meta property="og:image" content="https://la-lojban.github.io/valsr/valsr.jpg">
     <meta property="og:description" content="Guess the word in six tries.">
-    <script type="module">import init from '/valsr/index-a36c3ade507d6f3f.js';init('/valsr/index-a36c3ade507d6f3f_bg.wasm');</script>
-    <link rel="stylesheet" href="/valsr/styles-79950e11fb4299c8.css">
+    <script type="module">import init from '/valsr/valsr-e84bdde52d4b7f7f.js';init('/valsr/valsr-e84bdde52d4b7f7f_bg.wasm');</script>
+    <link rel="stylesheet" href="/valsr/styles-6b6ca68a4bcff635.css">
     
     
 
@@ -19,8 +19,47 @@
     <meta name="theme-color" content="#ffddcc">
 
     <title>A Lojban Wordle clone</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.5.1/socket.io.js"></script>
   
-<link rel="preload" href="/valsr/index-a36c3ade507d6f3f_bg.wasm" as="fetch" type="application/wasm" crossorigin="">
-<link rel="modulepreload" href="/valsr/index-a36c3ade507d6f3f.js"></head>
-<body>
+<link rel="preload" href="/valsr/valsr-e84bdde52d4b7f7f_bg.wasm" as="fetch" type="application/wasm" crossorigin="">
+<link rel="modulepreload" href="/valsr/valsr-e84bdde52d4b7f7f.js"></head>
+  <body>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        var socket1Chat_connected;
+        var socket1Chat = io("wss://jbotcan.org:9091", {
+          transports: ["polling", "websocket"],
+        });
+        // if (socket1Chat) {
+          socket1Chat.on("connect", function () {
+            console.log(socket1Chat);
+            socket1Chat_connected = true;
+          });
+          socket1Chat.on("connect_error", function () {
+            console.log("1chat connection error");
+          });
+
+          function trimSocketChunk(text) {
+            return text
+              .replace(/[\n\r]+$/gims, " ")
+              .replace(/<br *\/?>/gims, " ");
+            // .split('<')[0]
+          }
+          socket1Chat.on("sentFrom", function (data) {
+            if (!socket1Chat_connected) return;
+            const i = data.data;
+            const msg = {
+              d: trimSocketChunk(i.chunk),
+              s: i.channelId,
+              w: i.author,
+            };
+
+            const velsku = document.getElementById("velsku_sebenji");
+            velsku.innerHTML = `<img src="https://la-lojban.github.io/sutysisku/pixra/nunsku.svg" class="velsku_pixra"/> <span class="velsku_pamei">[${msg.s}] ${msg.w}: ${msg.d}</span>`;
+          });
+        // }
+      });
+    </script>
+  
+
 </body></html>

@@ -17,8 +17,8 @@ use components::{
 use state::{Game, GameMode, State, Theme, TileState, WordList};
 
 const ALLOWED_KEYS: [char; 24] = [
-    'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P', 'A', 'S', 'D', 'F', 'G', '\'', 'J', 'K',
-    'L', 'Z', 'X', 'C', 'V', 'B', 'N', 'M',
+    'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P', 'A', 'S', 'D', 'F', 'G', '\'', 'J', 'K', 'L', 'Z', 'X',
+    'C', 'V', 'B', 'N', 'M',
 ];
 
 pub enum Msg {
@@ -287,6 +287,12 @@ impl Component for App {
                         html! {}
                     }
                 }
+                <div id="velsku" class="noselect">
+                <a id="velsku_sebenji" href="https://discord.gg/4KhzRzpmVr" target="_blank">
+                <img src="https://la-lojban.github.io/sutysisku/pixra/nunsku.svg" class="velsku_pixra"/>
+                {"Live chat"}
+                </a>
+                </div>
             </div>
         }
     }
