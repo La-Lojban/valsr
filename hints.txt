@@ -60,7 +60,7 @@ BARDA	zmadu lo cnano be zo'e bei zo'e be'o zo'e noi cimde
 BARJA	stuzi lo nu ti noi selpinxe cu se vecnu ja se sabji fi gi'e se pinxe
 BARKLA	klama lo bartu
 BARNA	selviska'e prina ja skuro ja tcila lo sefta
-BARTU	no pagbu be cu zvati
+BARTU	no pagbu cu zvati
 BASFA	marce zo'e no'u so'i prenu
 BASTI	pu na je ca ckaji zo'e noi pu je nai ca se ckaji
 BATCI	gasnu lo nu ti noi pagbu cu tunta zo'e noi pagbu
@@ -223,7 +223,7 @@ CINSNE	senva lo nu vo'a cinse
 CIPCTA	catlu
 CIPCTA	lo nu go'i cu cipra
 CIPNI	glaselblu je selna'i bogda'u
-CIPNI	lo xadni be cu se gacri lo pimlu
+CIPNI	lo xadni cu se gacri lo pimlu
 CIPNI	lo cifnu cu jbena ne'i lo se calku sovda
 CIPRA	tadji lo nu pajni lo du'u xu kau zo'e se ckaji
 CIRKO	fliba lo ka ralte kei bu'u
@@ -263,7 +263,7 @@ CLINU	crino pu .i je blanu ba
 CLIRA	cabna ja purci lo tolfa'o be lo tcaci ja se kanpe temci
 CLIVA	sisti lo nu zvati kei fe'e ca'o zo'e i zo'e muvdu zi'o
 CLUGAU	gasnu lo nu culno
-CLUPA	dasri ja skori ja cilta ja linsi .i je lo fanmo be cu jorne lo tolfa'o
+CLUPA	dasri ja skori ja cilta ja linsi .i je lo fanmo cu jorne lo tolfa'o
 CMACAI	cmalu je carmi
 CMACI	saske zo'e noi se ki'irsi'u be lo namcu .a lo se klani .a lo tarmi
 CMACMA	cmalu loka zo'e cmalu kei zi'o
@@ -292,7 +292,7 @@ CNIJBI	jibni zo'e le ka cinmo
 CNINO	lo nu ckaji cu pu zi co'a se sanji
 CNIREI	preti lo du'u zo'e cinmo makau ku
 CNISA	tilju je ranti je blagrusi jinme cmuxu'i gi'e se sinxa zo'oi Pb
-CNITA	lo stuzi be cu zmadu je panra lo stuzi be zo'e lo ka dizlo
+CNITA	lo stuzi cu zmadu je panra lo stuzi be zo'e lo ka dizlo
 CONDI	barda zo'e noi farna
 CORCI	asna lo se pagbu be zo'e ku gi'e ve smusku
 CPACU	co'a tolcau zo'e noi zo'e krasi ke'a
@@ -323,7 +323,7 @@ CTINO	manku se ja'e lo nu se ragve gi'e fanta lo nu te gusni
 CTITCI	tutci lo ka lo remna cu pilno ce'u lo ka muvgau lo se citka lo moklu
 CTITCI	forca ja smuci ja dakfu
 CTUCA	troci lo ka gasnu lo nu cilre
-CUKLA	se cimde re da ije lo jimte be cu manfo lo ka ce'u sepli lo midju be zo'e makau
+CUKLA	se cimde re da ije lo jimte cu manfo lo ka ce'u sepli lo midju be zo'e makau
 CUKTA	se papri lo vasru be zo'e noi se finti
 CULNO	vasru zo'e ja'e lo nu na kakne lo ka vasru lo drata
 CUMKI	ka'e fasnu
@@ -434,7 +434,7 @@ DUNRA	citsi lo ka lenku kei zo'e tu'i gi'e se lidne lo critu gi'e lidne lo vensa
 DUSFRI	lifri zo'e noi dukse
 DUTKAI	ckaji lo dukti
 DZENA	mutce lidne zo'e zo'e noi mu'a lo ka rorci
-DZENA	lo rorlei be cu purci lo rorlei be lo rorci
+DZENA	lo rorlei cu purci lo rorlei be lo rorci
 DZIGAU	gasnu lo nu dizlo
 E'ACPE	cpedu lo ka ce'u e'ande
 E'ANDE	gasnu lo nu se krali
@@ -506,7 +506,7 @@ FIRFRA	frati zo'e noi flira
 FIZBU	ue'inmo
 FIZDE	ri'enai fu'inai denpa je fizbu
 FLADRA	ti noi tcini ja se zukte cu drani lo ka ce'u sarxe zo'e noi flalu
-FLADRA	lo finti be cu .e'ande zi'o
+FLADRA	lo finti cu .e'ande zi'o
 FLALU	javni lo nu se zukte ja se ckaji
 FLECU	marji zo'e noi litki ja gapci gi'e muvdu zo'e zo'e lo ru'i vasru
 FLIBA	na mulzu'e zo'e noi se troci
@@ -533,12 +533,12 @@ GANLO	lo nu pagre zo'e (to noi vorme toi) zo'e fa zo'e fo zi'o cu se zunti zi'o 
 GANRA	barda zo'e noi remoi cimde
 GANSE	pilno zo'e lo ka ce'u viska ja tirna ja sumne ja sanji
 GANTRE	lo ka gantre cu ka ko'a goi zo'e ko'e goi zo'e ko'i goi zo'e ko'o goi zo'e ce'ai ko'a mitre ko'e ko'i noi ko'a ganra ke'a ku'o ko'o
-GANXO	lo xadni be cu pagbu gi'e ve te se vikmi lo sligu
+GANXO	lo xadni cu pagbu gi'e ve te se vikmi lo sligu
 GANZU	gasnu lo nu binxo zo'e noi cnici ja se javni
 GAPCI	marji zo'e noi lo selci be ke'a cu prane lo ka ka'e muvdu
 GAPCI	frica lo litki .e lo sligu lo ka jitcau lo ka preja
 GAPKLA	klama zo'e noi ke'a gapru
-GAPRU	lo stuzi be cu zmadu je panra lo stuzi be zo'e lo ka galtu
+GAPRU	lo stuzi cu zmadu je panra lo stuzi be zo'e lo ka galtu
 GARNA	tutci lo ka sarji ja se rinju kei gi'e grana
 GASNU	lo nu zukte cu selja'e
 GAUKLA	gasnu lo nu klama
@@ -924,7 +924,7 @@ LUNBE	se gacri no da
 LUNRA	mluni zo'e noi plini gi'e na'o terdi
 LUNSA	ti noi gapci cu binxo lo litki
 MABRU	bogda'u
-MABRU	lo xadni be cu na'o se gacri lo kerfa
+MABRU	lo xadni cu na'o se gacri lo kerfa
 MABRU	ctigau lo cifnu lo ladru noi se cigla lo tatru
 MAFPLI	cu te se makfa zo'e tepi'o
 MAKCU	mulno lo ka ba'o banro lo ckaji be zo'e gi'a farvi lo ka ckaji
@@ -1000,7 +1000,7 @@ MLATU	tolcilce ke re'ucti mabru
 MLATU	re'ucti mabru
 MLAUCA	lo nu cu tavla cu se pagbu lo nu tavla
 MLAUCA	cusku lo noi na bi'ai barda vau srana
-MLECA	lo se me'au zo'e be zo'e lo se me'au zo'e be cu dubme'a gi'e se sumji
+MLECA	lo se me'au zo'e be zo'e lo se me'au zo'e cu dubme'a gi'e se sumji
 MLEDI	pavyselsle spati gi'e se fusra je parji
 MLEVLA	valsi gi'e melbi
 MLEZVI	zviki zo'e noi melbi
@@ -1034,7 +1034,7 @@ MUTMLE	melbi zo'e zo'e noi se ckaji lo'e mucti
 MUVDU	cenba lo ka ce'u zvati makau kei fe'e co'u zo'e fe'e co'a zo'e fe'e ca'o
 MUVZVA	zvati gi'e muvdu zo'e zo'e zo'e ne'i
 NABMI	zunti lo nu zukte
-NABMI	lo nu tolcri lo danfu be cu sarcu
+NABMI	lo nu tolcri lo danfu cu sarcu
 NACMEI	me zo'e mei zo'e ce'o zo'e ce'o zo'e li'o vu'o noi namcu
 NACREI	preti lo du'u makau namcu ku
 NADMAU	zmadu zo'e lo ka ce'u nandu
@@ -1043,7 +1043,7 @@ NAISKU	cusku su'o da poi ke'a sinxa lo du'u zo'e jinvi lo du'u zo'e jitfa
 NALCI	xadypau gi'e tutci lo ka ce'u slilu lo ka muvdu lo gapru kei jo'u lo ka muvdu lo cnita kei ja'e lo nu vofli
 NALDJI	na'e djica
 NALDRA	na'e drani
-NALFI	lo me'au zo'e be cu dunli
+NALFI	lo me'au zo'e cu dunli
 NALVAI	lo ka ce'u nalvai ce'u ce'u cu ka ce'u goi zo'e na'e vajni ce'u goi zo'e ce'u goi
 NAMCU	te kancu ja se klani
 NANBA	cidja gi'e se jukpa fi lo nu glari'a lo pesxu be lo grupu'o be zo'e be'o jo'u lo ladru ja djacu jo'u to su'o roi ku toi lo fomymledi
@@ -1067,7 +1067,7 @@ NAZBI	pagbu lo flira be gi'e vasru lo rango be zo'e bei lo ka sumne kei gi'e se 
 NAZBI	lo nazbi be lo remna cu bongu punli lo midju be lo flira gi'e selfu fi ji'a lo nu stika ja jitro lo voksa
 NEJNI	ni zo'e kakne ja vlipa lo ka zukte ja gunka ja bapli ja tolcando
 NELCI	se pluka ja se melbi ja se kukte
-NENRI	ro pagbu be cu zvati
+NENRI	ro pagbu cu zvati
 NERBEI	bevri zo'e zo'e noi nenri
 NERKLA	klama lo nenri
 NERMLA	mlana lo nenri
@@ -1328,7 +1328,7 @@ SAMPU	jai frili
 SAMPU	na'e vrici
 SAMSKE	saske lo si'o skami ku
 SANCE	se krasi gi'e ka'e se tirna
-SANGA	bacru ja se sance zo'e fau lo nu lo voksa be cu zgike
+SANGA	bacru ja se sance zo'e fau lo nu lo voksa cu zgike
 SANJI	lifri lo nu zasti
 SANLI	zasni lo ka lo xadni be ce'u cu sraji gi'e cpana gi'e se sarji zo'e noi tuple ja jimca ja zbepi ce'u
 SANMI	gunma zo'e noi cidja gi'e bredi lo ka se citka
@@ -1510,7 +1510,7 @@ SUMNE	ganse zo'e lo'e nazbi
 SUMPOI	porsi le selsku terli'e loi sumti
 SUMREI	preti lo du'u makau sumti ku
 SUMSMI	simsa lo sumti lo ka ce'u ma kau ka'e zvati
-SUMTI	lo terbrisni be cu cmima gi'e me zo'e moi
+SUMTI	lo terbrisni cu cmima gi'e me zo'e moi
 SURLA	zukte ja ckaji zo'e ja'e lo nu na'e tatpi
 SUTCLI	sutra lo nu vo'a cilre
 SUTKLA	klama .i je lo go'i cu sutra lo nu go'i
@@ -1548,7 +1548,7 @@ TCACI	se tarti gi'e cafne ja dikni
 TCADU	tumla gi'e te denmi lo ka se xabju
 TCANA	se jonsi'u lo pagbu be zo'e noi ciste be fi mu'a lo ka te marce ja xe bevri ja ve cusku
 TCAPAU	pagbu zo'e noi ke'a tcadu
-TCATI	litki gi'e se jukpa fi lo ka gasnu lo nu lo pezli be cu jinru lo djacu
+TCATI	litki gi'e se jukpa fi lo ka gasnu lo nu lo pezli cu jinru lo djacu
 TCEBRA	mutce loka ce'u barda kei zi'o
 TCEMLI	milxe lo ka ce'u mutce
 TCETCE	mutce lo ka mutce
@@ -1624,7 +1624,7 @@ TUMGRE	pagre zo'e noi ke'a tumla
 TUNBA	dunli zo'e zo'e noi ka makau rirni ce'u kei gi'a ka ce'u panzi makau kei gi'a simsa
 TUNKA	ranti jinme cmuxu'i gi'e xunre bunre gi'e se pilno fi lo ka se dikca .e lo ka pagbu lo lastu .a lo ransu kei gi'e se sinxa zo'oi Cu
 TUNLO	gasnu lo nu pagre lo galxe be zo'e lo stomaxu
-TUNTA	lo jipno be cu danre
+TUNTA	lo jipno cu danre
 TUPLE	pagbu lo xadni be gi'e sarji je muvgau
 TURKO	ckini lo kulnu ja bangu ja cecmu ja natmi pe lo bantu'uru ja gugdeturu
 TURNI	catni je jitro
@@ -1732,7 +1732,7 @@ XAGRI	tubnu zgitci gi'e se pagbu zo'e noi cmalu je toltinsa spisa lo stani .a lo
 XAICKU	cukta .i je se xrani
 XAJMI	jai se jalge lo nu cmila ja se zdile
 XAKSU	pilno je daspo
-XAKSU	pilno zo'e co'u lo nu lo no si'e be cu stali
+XAKSU	pilno zo'e co'u lo nu lo no si'e cu stali
 XALBO	zukte ja ckaji zo'e se cau lo ka vajni
 XALKA	skacau je klina je febysutra je jelka'e litki gi'e se krasi gi'e se vrusi lo cpina gi'e jicmu lo jikru gi'e kakne lo ka kansa lo djacu lo ka se mixre
 XALNI	suksa je carmi lo ka terpa
@@ -1825,7 +1825,7 @@ ZILXRU	jai se krefu fai lo nu tcini jo nai vanbi kei noi ke'a basti lo nu tcini 
 ZILZBA	zi'o zbasu
 ZIPCPI	na'e vofli je limna cipni gi'e me
 ZIRPU	skari lo mixre be lo blanu jo'u lo xunre
-ZMADU	lo se me'au zo'e be zo'e lo se me'au zo'e be cu dubmau gi'e sumji
+ZMADU	lo se me'au zo'e be zo'e lo se me'au zo'e cu dubmau gi'e sumji
 ZMAKAI	zmadu zo'e lo ka zo'e ce'u ckaji
 ZMANEI	nelci zo'e noi ke'a zmadu zo'e lo ka zo'e nelci ce'u
 ZMANEI	zmadu zo'e lo ka zo'e nelci ce'u
